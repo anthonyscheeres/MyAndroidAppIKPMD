@@ -5,6 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.myandriodikpmdapplication.interfaces.Http;
+import com.example.myandriodikpmdapplication.interfaces.Identicon;
+import com.example.myandriodikpmdapplication.interfaces.Token;
+import com.example.myandriodikpmdapplication.models.User;
+import com.example.myandriodikpmdapplication.services.HttpService;
+import com.example.myandriodikpmdapplication.services.KweloIdenticon;
+import com.example.myandriodikpmdapplication.services.UserIDService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -20,12 +27,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.io.IOException;
+import java.util.NoSuchElementException;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private String NAME_OF_PREFERENCES;
-    private String USER_ID_NAME;
-    private String userID ;
+    private String NAME_OF_PREFERENCES = "Android_IKPMD8992";
+    private String userID = "userID";
     SharedPreferences settings;
 
     @Override
@@ -34,62 +43,46 @@ public class MainActivity extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
-
-
+        //Enable usage of local storage by creating this object at startup
         settings = getSharedPreferences(NAME_OF_PREFERENCES, MODE_PRIVATE);
-
-
 
         // Database settings
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        //Apply settings
-        NAME_OF_PREFERENCES = "Account_IKPMD";
-        USER_ID_NAME = "userID";
+       //Initialize http client
+        Http http = new HttpService();
 
-        userID = USER_ID_NAME;
 
-        //Creates user id named after the userID if it didn't exist
-        userID = settings.getString(USER_ID_NAME, userID);
+        Token identification = new UserIDService();
 
-        System.out.println("Hey here you idiot "+userID);
+        try{
 
-        //this triggers if the app is ran first time
-        if (userID == USER_ID_NAME){
-            //get a unique id from the database
+            userID = identification.get(settings);
+
+        }catch (NoSuchElementException err){
             userID = database.getReference().push().getKey();
 
-            SharedPreferences.Editor editor = settings.edit();
+            Identicon pfp = new KweloIdenticon();
 
-            editor.putString(USER_ID_NAME, userID);
 
-            editor.apply();
+            new Thread(() -> {
+
+
+                identification.update(settings, userID, http, database, pfp);
+
+
+            }).start();
+
+
+
+
+
 
 
         }
 
-
-        //Initialize user
+        //Initialize the object that allows modifying the user his account data
         DatabaseReference myRef = database.getReference(userID);
-
-
-
-
-        // Read from the database
-       /* myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-
-            }
-        });*/
 
 
         // Initialize front end
