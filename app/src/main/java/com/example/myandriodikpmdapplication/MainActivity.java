@@ -1,11 +1,10 @@
 package com.example.myandriodikpmdapplication;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
-import com.example.myandriodikpmdapplication.interfaces.Database;
-import com.example.myandriodikpmdapplication.services.FirebaseRealtimeDatabaseService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -24,6 +23,10 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private String NAME_OF_PREFERENCES;
+    private String USER_ID_NAME;
+    private String userID ;
+    SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +35,45 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
+
+        settings = getSharedPreferences(NAME_OF_PREFERENCES, MODE_PRIVATE);
+
+
+
         // Database settings
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("app");
+
+        //Apply settings
+        NAME_OF_PREFERENCES = "Account_IKPMD";
+        USER_ID_NAME = "userID";
+
+        userID = USER_ID_NAME;
+
+        //Creates user id named after the userID if it didn't exist
+        userID = settings.getString(USER_ID_NAME, userID);
+
+        System.out.println("Hey here you idiot "+userID);
+
+        //this triggers if the app is ran first time
+        if (userID == USER_ID_NAME){
+            //get a unique id from the database
+            userID = database.getReference().push().getKey();
+
+            SharedPreferences.Editor editor = settings.edit();
+
+            editor.putString(USER_ID_NAME, userID);
+
+            editor.apply();
+
+
+        }
+
+
+        //Initialize user
+        DatabaseReference myRef = database.getReference(userID);
+
+
+
 
         // Read from the database
        /* myRef.addValueEventListener(new ValueEventListener() {
@@ -51,12 +90,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });*/
-
-        //initialize database service
-        Database myData = new FirebaseRealtimeDatabaseService();
-
-
-
 
 
         // Initialize front end
