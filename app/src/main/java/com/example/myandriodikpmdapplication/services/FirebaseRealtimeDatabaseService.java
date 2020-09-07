@@ -11,12 +11,9 @@ public class FirebaseRealtimeDatabaseService {
 
     }
 
-    public Map<String, Object> get(DatabaseReference myRef){
-        return myRef.getValue(Map.class);
-    }
 
     public void delete(DatabaseReference myRef){
-        myRef.deleteValue();
+      myRef.removeValue();
     }
 
 }
