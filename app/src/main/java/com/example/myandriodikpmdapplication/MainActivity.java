@@ -16,8 +16,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -73,16 +76,32 @@ public class MainActivity extends AppCompatActivity {
 
             }).start();
 
-
-
-
-
-
-
         }
 
         //Initialize the object that allows modifying the user his account data
         DatabaseReference myRef = database.getReference(userID);
+
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                User value = dataSnapshot.getValue(User.class);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+            }
+        });
+
+
+
+
+
 
 
         // Initialize front end
