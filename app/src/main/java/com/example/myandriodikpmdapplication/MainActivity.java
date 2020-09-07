@@ -1,18 +1,17 @@
 package com.example.myandriodikpmdapplication;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.myandriodikpmdapplication.interfaces.Database;
+import com.example.myandriodikpmdapplication.services.FirebaseRealtimeDatabaseService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -53,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-
+        //initialize database service
+        Database myData = new FirebaseRealtimeDatabaseService();
 
 
 
