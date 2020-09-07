@@ -108,7 +108,8 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText(userData.getUserID());
 
 
-                byte[] byteArrayOfAnImage = Base64.decode(userData.getProfilePicture(), Base64.DEFAULT);
+
+                byte[] byteArrayOfAnImage = Base64.decode(userData.getProfilePicture().replace("data:image/png;base64",""), Base64.DEFAULT);
                 Bitmap decodedImage = BitmapFactory.decodeByteArray(byteArrayOfAnImage, 0, byteArrayOfAnImage.length);
 
 
