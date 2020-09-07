@@ -1,9 +1,14 @@
 package com.example.myandriodikpmdapplication;
 
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.interfaces.Identicon;
@@ -36,9 +41,12 @@ import java.util.NoSuchElementException;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private String NAME_OF_PREFERENCES = "Android_IKPMD8992";
-    private String userID = "userID";
+    private final String NAME_OF_PREFERENCES = "Android_IKPMD8992";
+
+    String userID = "userID";
     SharedPreferences settings;
+    ImageView imageView;
+    TextView textView ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +60,12 @@ public class MainActivity extends AppCompatActivity {
         // Database settings
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-       //Initialize http client
+       //Initialize services
         Http http = new HttpService();
-
-
         Token identification = new UserIDService();
+
+
+
 
         try{
 
@@ -87,7 +96,21 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                User value = dataSnapshot.getValue(User.class);
+                User userData = dataSnapshot.getValue(User.class);
+
+
+
+                imageView = findViewById(R.id.imageView);
+
+
+                textView = findViewById(R.id.textView);
+
+                textView.setText(userData.getUserID());
+
+
+                byte[] byteArrayOfAnImage = Base64.decode(userData.getProfilePicture(), Base64.DEFAULT);
+                Bitmap decodedImage = BitmapFactory.decodeByteArray(byteArrayOfAnImage, 0, byteArrayOfAnImage.length);
+                imageView.setImageBitmap(decodedImage);
 
             }
 
