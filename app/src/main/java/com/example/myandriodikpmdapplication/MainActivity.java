@@ -110,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
 
                 byte[] byteArrayOfAnImage = Base64.decode(userData.getProfilePicture(), Base64.DEFAULT);
                 Bitmap decodedImage = BitmapFactory.decodeByteArray(byteArrayOfAnImage, 0, byteArrayOfAnImage.length);
+
+
                 imageView.setImageBitmap(decodedImage);
 
             }
