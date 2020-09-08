@@ -10,10 +10,12 @@ import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myandriodikpmdapplication.interfaces.BitmapI;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.interfaces.Identicon;
 import com.example.myandriodikpmdapplication.interfaces.Token;
 import com.example.myandriodikpmdapplication.models.User;
+import com.example.myandriodikpmdapplication.services.BitmapService;
 import com.example.myandriodikpmdapplication.services.HttpService;
 import com.example.myandriodikpmdapplication.services.KweloIdenticon;
 import com.example.myandriodikpmdapplication.services.UserIDService;
@@ -47,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences settings;
     ImageView imageView;
     TextView textView ;
+    BitmapI imageBitmap = new BitmapService();
+    // Database settings
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    //Initialize services
+    Http http = new HttpService();
+    Token identification = new UserIDService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,34 +65,14 @@ public class MainActivity extends AppCompatActivity {
         //Enable usage of local storage by creating this object at startup
         settings = getSharedPreferences(NAME_OF_PREFERENCES, MODE_PRIVATE);
 
-        // Database settings
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-       //Initialize services
-        Http http = new HttpService();
-        Token identification = new UserIDService();
-
-
-
-
         try{
-
             userID = identification.get(settings);
-
         }catch (NoSuchElementException err){
             userID = database.getReference().push().getKey();
-
             Identicon pfp = new KweloIdenticon();
-
-
             new Thread(() -> {
-
-
                 identification.update(settings, userID, http, database, pfp);
-
-
             }).start();
-
         }
 
         //Initialize the object that allows modifying the user his account data
@@ -98,23 +86,13 @@ public class MainActivity extends AppCompatActivity {
                 // whenever data at this location is updated.
                 User userData = dataSnapshot.getValue(User.class);
 
+                Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
 
-
+                // update UI
                 imageView = findViewById(R.id.imageView);
-
-
                 textView = findViewById(R.id.textView);
-
                 textView.setText(userData.getUserID());
-
-
-
-                byte[] byteArrayOfAnImage = Base64.decode(userData.getProfilePicture().replace("data:image/png;base64",""), Base64.DEFAULT);
-                Bitmap decodedImage = BitmapFactory.decodeByteArray(byteArrayOfAnImage, 0, byteArrayOfAnImage.length);
-
-
                 imageView.setImageBitmap(decodedImage);
-
             }
 
             @Override
