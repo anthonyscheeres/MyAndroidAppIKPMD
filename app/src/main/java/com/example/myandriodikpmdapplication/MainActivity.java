@@ -43,6 +43,8 @@ import java.util.NoSuchElementException;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+
+    //The app's name in local storage
     private final String NAME_OF_PREFERENCES = "Android_IKPMD8992";
 
     String userID = "userID";
@@ -55,12 +57,10 @@ public class MainActivity extends AppCompatActivity {
     //Initialize services
     Http http = new HttpService();
     Token identification = new UserIDService();
+    Identicon pfp = new KweloIdenticon();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
         super.onCreate(savedInstanceState);
         //Enable usage of local storage by creating this object at startup
         settings = getSharedPreferences(NAME_OF_PREFERENCES, MODE_PRIVATE);
@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
             userID = identification.get(settings);
         }catch (NoSuchElementException err){
             userID = database.getReference().push().getKey();
-            Identicon pfp = new KweloIdenticon();
             new Thread(() -> {
                 identification.update(settings, userID, http, database, pfp);
             }).start();
@@ -81,9 +80,10 @@ public class MainActivity extends AppCompatActivity {
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
+            // This method is called once with the initial value and again
+            // whenever data at this location is updated.
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
+                //Get data object from database and map to it's model
                 User userData = dataSnapshot.getValue(User.class);
 
                 Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
@@ -101,12 +101,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
 
         // Initialize front end
         setContentView(R.layout.activity_main);
