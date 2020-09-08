@@ -116,12 +116,12 @@ public class Metadata {
             this.addeddate = addeddate;
         }
 
-        public void setIdentifier_access(String identifier - access) {
-            this.identifier_access = identifier - access;
+        public void setIdentifier_access(String identifier_access) {
+            this.identifier_access = identifier_access;
         }
 
-        public void setIdentifier_ark(String identifier - ark) {
-            this.identifier_ark = identifier - ark;
+        public void setIdentifier_ark(String identifier_ark) {
+            this.identifier_ark = identifier_ark;
         }
 
         public void setOcr(String ocr) {

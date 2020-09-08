@@ -38,5 +38,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'com.google.firebase:firebase-database:16.0.4'
     implementation group: 'com.github.barteksc', name: 'android-pdf-viewer', version: '2.6.0'
+// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.2'
 
 }
