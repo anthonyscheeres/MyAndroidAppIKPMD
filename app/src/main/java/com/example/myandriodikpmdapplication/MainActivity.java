@@ -127,10 +127,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        Snackbar.make(navigationView, "Welcome", Snackbar.LENGTH_LONG)
+        Snackbar.make(navigationView, "Welcome ", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-
-
     }
 
     @Override
