@@ -43,10 +43,8 @@ import java.util.NoSuchElementException;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-
     //The app's name in local storage
     private final String NAME_OF_PREFERENCES = "Android_IKPMD8992";
-
     String userID = "userID";
     SharedPreferences settings;
     BitmapI imageBitmap = new BitmapService();
@@ -62,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //Enable usage of local storage by creating this object at startup
         settings = getSharedPreferences(NAME_OF_PREFERENCES, MODE_PRIVATE);
-
         try{
             userID = identification.get(settings);
         }catch (NoSuchElementException err){
@@ -71,10 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 identification.update(settings, userID, http, database, pfp);
             }).start();
         }
-
         //Initialize the object that allows modifying the user his account data
         DatabaseReference myRef = database.getReference(userID);
-
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -126,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
         Snackbar.make(navigationView, "Welcome ", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }

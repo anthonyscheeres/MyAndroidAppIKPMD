@@ -36,33 +36,22 @@ public class HttpService implements Http {
      */
     // HTTP GET request
     public String send(String myUrl , String requestType) throws Exception {
-
-
         URL obj = new URL(myUrl);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
         // optional default is GET
         con.setRequestMethod("GET");
-
         //add request header
         con.setRequestProperty("User-Agent", USER_AGENT);
-
         int responseCode = con.getResponseCode();
-        System.out.println("\nSending 'GET' request to URL : " + myUrl);
-        System.out.println("Response Code : " + responseCode);
-
         BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
+                new InputStreamReader(con.getInputStream())
+        );
         String inputLine;
         StringBuffer response = new StringBuffer();
-
         while ((inputLine = in.readLine()) != null) {
             response.append(inputLine);
         }
         in.close();
-
-        //print result
-        System.out.println(response.toString());
         return response.toString();
 
     }
@@ -78,7 +67,6 @@ public class HttpService implements Http {
         URL url = new URL (myUrl);
         HttpURLConnection con = (HttpURLConnection)url.openConnection();
         con.setRequestMethod(requestType);
-
         con.setRequestProperty("Content-Type", "application/json; charset=utf-8");
         con.setRequestProperty("Accept", "application/json");
         con.setDoOutput(true);
