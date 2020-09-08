@@ -12,6 +12,6 @@ public class KweloIdenticon implements Identicon {
 
         String url = "https://api.kwelo.com/v1/media/identicon/"+uniqueIdentidentifier+"?format=base64";
 
-        return http.get(url);
+        return http.send(url, Protocol.GET.toString());
     }
 }

@@ -35,10 +35,10 @@ public class HttpService implements Http {
      *
      */
     // HTTP GET request
-    public String get(String url ) throws Exception {
+    public String send(String myUrl , String requestType) throws Exception {
 
 
-        URL obj = new URL(url);
+        URL obj = new URL(myUrl);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
         // optional default is GET
@@ -48,7 +48,7 @@ public class HttpService implements Http {
         con.setRequestProperty("User-Agent", USER_AGENT);
 
         int responseCode = con.getResponseCode();
-        System.out.println("\nSending 'GET' request to URL : " + url);
+        System.out.println("\nSending 'GET' request to URL : " + myUrl);
         System.out.println("Response Code : " + responseCode);
 
         BufferedReader in = new BufferedReader(
@@ -74,7 +74,7 @@ public class HttpService implements Http {
      *
      */
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public String send(String myUrl, String jsonInputString, String requestType) throws IOException, IOException {
+    public String send(String myUrl, String jsonInputString, String requestType) throws Exception {
         URL url = new URL (myUrl);
         HttpURLConnection con = (HttpURLConnection)url.openConnection();
         con.setRequestMethod(requestType);
