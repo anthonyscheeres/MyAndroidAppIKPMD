@@ -49,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
     String userID = "userID";
     SharedPreferences settings;
-    ImageView imageView;
-    TextView textView ;
     BitmapI imageBitmap = new BitmapService();
     // Database settings
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -87,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
                 User userData = dataSnapshot.getValue(User.class);
 
                 Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
+                ImageView imageView;
+                TextView textView ;
 
                 // update UI
                 imageView = findViewById(R.id.imageView);
@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
