@@ -41,6 +41,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.beans.PropertyChangeSupport;
 import java.util.NoSuchElementException;
 
 public class MainActivity extends AppCompatActivity {
@@ -61,15 +62,28 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     Archive archive = new ArchiveOrgUrlService();
     private AppBarConfiguration mAppBarConfiguration;
-
+    protected PropertyChangeSupport propertyChangeSupport;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         //Enable usage of local storage by creating this object at startup
         settings = getSharedPreferences(NAME_OF_PREFERENCES, MODE_PRIVATE);
         try {
+
+
+
+
+
+
+
+
+
+
             userID = identification.get(settings);
         } catch (NoSuchElementException err) {
             userID = database.getReference().push().getKey();
@@ -84,48 +98,56 @@ public class MainActivity extends AppCompatActivity {
         //Initialize core functionality
 
 
-        new Thread(() -> {
-
-            try {
-
-                //change to "manga_library" to make it a manga app
-                collectionOfComics = archive.search("webcomicuniverse", http);
-
-
-                gridview2 = findViewById(R.id.gridView1);
-
-                GridAdapterHome gridAdapterHome = new GridAdapterHome(this, archive, collectionOfComics.getResponse().getDocs());
 
 
 
-                gridview2.setAdapter(gridAdapterHome);
+
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+
+                        //change to "manga_library" to make it a manga app
+                        collectionOfComics = archive.search("webcomicuniverse", http);
 
 
-                gridview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view,
-                                            int position, long id) {
+
+
+                    } catch (Exception e) {
+
                     }
-                });
+                }});
 
-
-
-            } catch (Exception e) {
-
-            }
-/*
+            t.start(); // spawn thread
 
         try {
-           collectionOfComics = archive.search("manga_library", http);
-
-        } catch (Exception e) {
-
+            t.join();  // wait for thread to finish
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-*/
+
+        System.out.println("idiot "+collectionOfComics.getResponse().getDocs().size());
+
+        gridview2 = findViewById(R.id.gridView1);
 
 
-        }).start();
+        GridAdapterHome gridAdapterHome = new GridAdapterHome(this, archive, collectionOfComics.getResponse().getDocs());
+
+
+
+        gridview2.setAdapter(gridAdapterHome);
+
+
+        gridview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+            }
+        });
+
+
 
 
         //Get user data
@@ -175,6 +197,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
         Snackbar.make(navigationView, "Welcome ", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
+
+
+
     }
 
 

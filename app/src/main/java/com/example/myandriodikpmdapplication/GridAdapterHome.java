@@ -32,16 +32,27 @@ public class GridAdapterHome extends BaseAdapter {
 
     @Override
     public int getCount() {
+
+
+        //System.out.println("idiot"+docs.size());
+
         return docs.size();
     }
 
     @Override
     public Object getItem(int i) {
+
+        System.out.println("idiotss" +docs.size());
+
+
         return docs.get(i);
     }
 
     @Override
     public long getItemId(int i) {
+
+
+
         return 0;
     }
 
@@ -49,8 +60,7 @@ public class GridAdapterHome extends BaseAdapter {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-
-
+        System.out.println("idiotss" +docs.size());
 
         System.out.println("idiot");
 
