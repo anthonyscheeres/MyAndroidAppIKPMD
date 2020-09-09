@@ -1,6 +1,7 @@
 package com.example.myandriodikpmdapplication.services;
 
 import android.content.SharedPreferences;
+
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.interfaces.Identicon;
 import com.example.myandriodikpmdapplication.interfaces.Token;
@@ -8,7 +9,6 @@ import com.example.myandriodikpmdapplication.models.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.io.IOException;
 import java.util.NoSuchElementException;
 
 public class UserIDService implements Token {
@@ -26,7 +26,7 @@ public class UserIDService implements Token {
         return userID;
     }
 
-    public void update(SharedPreferences settings, String userID, Http http, FirebaseDatabase database, Identicon pfp ) {
+    public void update(SharedPreferences settings, String userID, Http http, FirebaseDatabase database, Identicon pfp) {
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(USER_ID_NAME, userID);
         editor.apply();

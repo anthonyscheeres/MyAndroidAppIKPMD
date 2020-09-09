@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.view.Menu;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
     Http http = new HttpService();
     Token identification = new UserIDService();
     Identicon pfp = new KweloIdenticon();
+    GridView gridView;
+    ImageView imageView;
+    TextView textView ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,15 @@ public class MainActivity extends AppCompatActivity {
         //Initialize the object that allows modifying the user his account data
         DatabaseReference myRef = database.getReference(userID);
         // Read from the database
+
+
+        //Initialize core functionality
+
+        //gridView = (GridView) findViewById(R.id.gridView);
+
+
+
+        //Get user data
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             // This method is called once with the initial value and again
@@ -80,12 +93,11 @@ public class MainActivity extends AppCompatActivity {
                 User userData = dataSnapshot.getValue(User.class);
 
                 Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
-                ImageView imageView;
-                TextView textView ;
+
 
                 // update UI
-                imageView = findViewById(R.id.imageView);
-                textView = findViewById(R.id.textView);
+                imageView = (ImageView) findViewById(R.id.imageView);
+                textView = (TextView) findViewById(R.id.textView);
                 textView.setText(userData.getUserID());
                 imageView.setImageBitmap(decodedImage);
             }
@@ -96,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+
 
         // Initialize front end
         setContentView(R.layout.activity_main);
