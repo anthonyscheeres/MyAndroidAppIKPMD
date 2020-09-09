@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Metadata {
         private String identifier;
         ArrayList < Object > collection = new ArrayList < Object > ();
@@ -25,8 +27,10 @@ public class Metadata {
         private String coverleaf;
         private String backup_location;
 
+    public Metadata() {
+    }
 
-        // Getter Methods
+// Getter Methods
 
         public String getIdentifier() {
             return identifier;

@@ -11,11 +11,14 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.BitmapI;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.interfaces.Identicon;
 import com.example.myandriodikpmdapplication.interfaces.Token;
+import com.example.myandriodikpmdapplication.models.ArchiveManga;
 import com.example.myandriodikpmdapplication.models.User;
+import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.services.BitmapService;
 import com.example.myandriodikpmdapplication.services.HttpService;
 import com.example.myandriodikpmdapplication.services.KweloIdenticon;
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     GridView gridView;
     ImageView imageView;
     TextView textView ;
+    Archive archive = new ArchiveOrgUrlService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +80,30 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference(userID);
         // Read from the database
 
-
         //Initialize core functionality
 
-        //gridView = (GridView) findViewById(R.id.gridView);
+
+        new Thread(() -> {
+
+        try {
+            ArchiveManga collectionOfComics = archive.search("webcomicuniverse", http);
+
+        } catch (Exception e) {
+            System.out.println("idiot");
+
+
+            e.printStackTrace();
+        }
+
+        try {
+            ArchiveManga collectionOfManga = archive.search("manga_library", http);
+            System.out.println("hi idiot"+collectionOfManga.getResponseHeader());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        }).start();
 
 
 

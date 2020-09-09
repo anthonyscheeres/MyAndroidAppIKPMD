@@ -2,10 +2,16 @@ package com.example.myandriodikpmdapplication.models;
 
 import java.util.ArrayList;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Response {
     private float numFound;
     private float start;
     ArrayList< Object > docs = new ArrayList < Object > ();
+
+    public Response() {
+    }
 
 
     // Getter Methods
