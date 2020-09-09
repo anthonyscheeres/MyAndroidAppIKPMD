@@ -32,12 +32,12 @@ public class GridAdapterHome extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return docs.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return docs.get(i);
     }
 
     @Override
@@ -45,11 +45,19 @@ public class GridAdapterHome extends BaseAdapter {
         return 0;
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
+
+
+        System.out.println("idiot");
+
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+
+        System.out.println("idiot");
 
         if (view == null) {
             view = new View(context);
@@ -78,6 +86,9 @@ public class GridAdapterHome extends BaseAdapter {
                 Object identifier = field.getChar(doc);
 
                 String url = archive.image(identifier.toString());
+
+
+                System.out.println("idiot" + url);
 
                 new DownloadImageService(imageView2)
                         .execute(url);
