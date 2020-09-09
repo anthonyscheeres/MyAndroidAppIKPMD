@@ -6,8 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ArchiveManga {
-    public ResponseHeader ResponseHeaderObject;
-    public Response ResponseObject;
+     ResponseHeader ResponseHeaderObject;
+     Response ResponseObject;
 
     public ArchiveManga() {
     }

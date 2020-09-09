@@ -45,7 +45,7 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 
 public class MainActivity extends AppCompatActivity {
-
+    ArchiveManga collectionOfComics;
     private AppBarConfiguration mAppBarConfiguration;
     //The app's name in local storage
     private final String NAME_OF_PREFERENCES = "Android_IKPMD8992";
@@ -86,18 +86,20 @@ public class MainActivity extends AppCompatActivity {
         new Thread(() -> {
 
         try {
-            ArchiveManga collectionOfComics = archive.search("webcomicuniverse", http);
+            collectionOfComics = archive.search("webcomicuniverse", http);
 
         } catch (Exception e) {
 
         }
+/*
 
         try {
-            ArchiveManga collectionOfManga = archive.search("manga_library", http);
+           collectionOfComics = archive.search("manga_library", http);
 
         } catch (Exception e) {
-          
+
         }
+*/
 
 
         }).start();
