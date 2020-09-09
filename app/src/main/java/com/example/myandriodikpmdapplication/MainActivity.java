@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     Http http = new HttpService();
     Token identification = new UserIDService();
     Identicon pfp = new KweloIdenticon();
-    GridView gridView;
+    GridView gridview2;
     ImageView imageView;
     TextView textView;
     Archive archive = new ArchiveOrgUrlService();
@@ -88,10 +88,11 @@ public class MainActivity extends AppCompatActivity {
                 collectionOfComics = archive.search("webcomicuniverse", http);
 
 
-                gridView = findViewById(R.id.gridView);
+                gridview2 = findViewById(R.id.gridView);
 
                 GridAdapterHome gridAdapterHome = new GridAdapterHome(this, archive, collectionOfComics.getResponse().getDocs());
-                
+
+                gridview2.setAdapter(gridAdapterHome);
 
 
             } catch (Exception e) {
@@ -120,14 +121,8 @@ public class MainActivity extends AppCompatActivity {
                 //Get data object from database and map to it's model
                 User userData = dataSnapshot.getValue(User.class);
 
-                Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
-
-
-                // update UI
-                imageView = findViewById(R.id.imageView);
-                textView = findViewById(R.id.textView);
-                textView.setText(userData.getUserID());
-                imageView.setImageBitmap(decodedImage);
+                //update UI based on database user data
+                updateUI(userData);
             }
 
             @Override
@@ -164,6 +159,18 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
         Snackbar.make(navigationView, "Welcome ", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
+    }
+
+
+    private void updateUI(User userData){
+        Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
+
+
+        // update UI
+        imageView = findViewById(R.id.imageView);
+        textView = findViewById(R.id.textView);
+        textView.setText(userData.getUserID());
+        imageView.setImageBitmap(decodedImage);
     }
 
     @Override
