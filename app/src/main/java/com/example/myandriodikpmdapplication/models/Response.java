@@ -33,4 +33,8 @@ public class Response {
     public void setStart(float start) {
         this.start = start;
     }
+
+    public ArrayList<Object> getDocs() {
+        return docs;
+    }
 }

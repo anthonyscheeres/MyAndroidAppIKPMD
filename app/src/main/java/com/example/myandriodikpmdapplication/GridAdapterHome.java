@@ -1,6 +1,7 @@
 package com.example.myandriodikpmdapplication;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,20 +9,25 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+
+import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.services.DownloadImageService;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 public class GridAdapterHome extends BaseAdapter {
 
     Context context;
+    Archive archive;
+    ArrayList<Object> docs;
     private LayoutInflater layoutInflater;
-    private String[] values;
-    private String[] images;
 
-
-    public GridAdapterHome(Context context, String[] values, String[] images) {
+    public GridAdapterHome(Context context, Archive archive, ArrayList<Object> docs) {
         this.context = context;
-        this.values = values;
-        this.images = images;
+        this.archive = archive;
+        this.docs = docs;
     }
 
     @Override
@@ -39,6 +45,7 @@ public class GridAdapterHome extends BaseAdapter {
         return 0;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
@@ -53,11 +60,35 @@ public class GridAdapterHome extends BaseAdapter {
 
             TextView textView2 = view.findViewById(R.id.textView2);
 
-            new DownloadImageService((ImageView) imageView2)
-                    .execute(images[i]);
+            Object doc = docs.get(i);
 
 
-            textView2.setText(values[i]);
+            Class<?> clazz = doc.getClass();
+            Field field = null; //Note, this can throw an exception if the field doesn't exist.
+
+            try {
+
+
+                field = clazz.getField("title");
+
+                Object title = field.getChar(doc);
+
+                field = clazz.getField("identifier");
+
+                Object identifier = field.getChar(doc);
+
+                String url = archive.image(identifier.toString());
+
+                new DownloadImageService(imageView2)
+                        .execute(url);
+
+
+                textView2.setText(title.toString());
+
+
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+
+            }
 
 
         }

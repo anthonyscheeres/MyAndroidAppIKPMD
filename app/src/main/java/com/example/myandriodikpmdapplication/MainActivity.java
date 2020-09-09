@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     Archive archive = new ArchiveOrgUrlService();
     private AppBarConfiguration mAppBarConfiguration;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +83,16 @@ public class MainActivity extends AppCompatActivity {
         new Thread(() -> {
 
             try {
+
+                //change to "manga_library" to make it a manga app
                 collectionOfComics = archive.search("webcomicuniverse", http);
+
+
+                gridView = findViewById(R.id.gridView);
+
+                GridAdapterHome gridAdapterHome = new GridAdapterHome(this, archive, collectionOfComics.getResponse().getDocs());
+                
+
 
             } catch (Exception e) {
 
@@ -99,9 +109,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         }).start();
-
-
-
 
 
         //Get user data
