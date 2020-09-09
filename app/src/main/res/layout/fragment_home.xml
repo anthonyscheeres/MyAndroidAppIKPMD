@@ -7,8 +7,4 @@
     tools:context=".ui.home.HomeFragment">
 
 
-    <!-- Here is the inserted layout -->
-    <include layout="@layout/grid_series_collection"/>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

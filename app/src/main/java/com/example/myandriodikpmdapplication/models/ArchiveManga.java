@@ -1,13 +1,12 @@
 package com.example.myandriodikpmdapplication.models;
 
-import com.example.myandriodikpmdapplication.models.ResponseHeader;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ArchiveManga {
-     ResponseHeader ResponseHeaderObject;
-     Response ResponseObject;
+    ResponseHeader ResponseHeaderObject;
+    Response ResponseObject;
 
     public ArchiveManga() {
     }
@@ -17,14 +16,14 @@ public class ArchiveManga {
         return ResponseHeaderObject;
     }
 
-    public Response getResponse() {
-        return ResponseObject;
+    public void setResponseHeader(ResponseHeader responseHeaderObject) {
+        this.ResponseHeaderObject = responseHeaderObject;
     }
 
     // Setter Methods
 
-    public void setResponseHeader(ResponseHeader responseHeaderObject) {
-        this.ResponseHeaderObject = responseHeaderObject;
+    public Response getResponse() {
+        return ResponseObject;
     }
 
     public void setResponse(Response responseObject) {

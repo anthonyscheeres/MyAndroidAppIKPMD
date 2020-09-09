@@ -1,14 +1,14 @@
 package com.example.myandriodikpmdapplication.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Response {
+    ArrayList<Object> docs = new ArrayList<Object>();
     private float numFound;
     private float start;
-    ArrayList< Object > docs = new ArrayList < Object > ();
 
     public Response() {
     }
@@ -20,14 +20,14 @@ public class Response {
         return numFound;
     }
 
-    public float getStart() {
-        return start;
+    public void setNumFound(float numFound) {
+        this.numFound = numFound;
     }
 
     // Setter Methods
 
-    public void setNumFound(float numFound) {
-        this.numFound = numFound;
+    public float getStart() {
+        return start;
     }
 
     public void setStart(float start) {

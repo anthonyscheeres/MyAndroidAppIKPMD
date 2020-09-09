@@ -9,9 +9,9 @@ import java.util.NoSuchElementException;
 public interface Token {
 
 
-    public String get(SharedPreferences settings) throws NoSuchElementException;
+    String get(SharedPreferences settings) throws NoSuchElementException;
 
-    public void update(SharedPreferences settings, String userID, Http http, FirebaseDatabase database, Identicon pfp);
+    void update(SharedPreferences settings, String userID, Http http, FirebaseDatabase database, Identicon pfp);
 
 
 }

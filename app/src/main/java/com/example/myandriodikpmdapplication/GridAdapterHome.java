@@ -5,6 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.myandriodikpmdapplication.services.DownloadImageService;
 
 public class GridAdapterHome extends BaseAdapter {
 
@@ -40,14 +44,25 @@ public class GridAdapterHome extends BaseAdapter {
 
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        if (view ==null){
+        if (view == null) {
             view = new View(context);
 
-            view  = layoutInflater.inflate(R.layout.fragment_home, null);
+            view = layoutInflater.inflate(R.layout.single_item, null);
+
+            ImageView imageView2 = view.findViewById(R.id.imageView2);
+
+            TextView textView2 = view.findViewById(R.id.textView2);
+
+            new DownloadImageService((ImageView) imageView2)
+                    .execute(images[i]);
+
+
+            textView2.setText(values[i]);
+
 
         }
 
 
-        return null;
+        return view;
     }
 }

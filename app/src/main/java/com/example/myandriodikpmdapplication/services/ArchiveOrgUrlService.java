@@ -50,7 +50,7 @@ public class ArchiveOrgUrlService implements Archive {
     }
 
     public String image(String identifier) {
-        String url = "https://archive.org/services/img/" + identifier ;
+        String url = "https://archive.org/services/img/" + identifier;
 
         return url;
     }

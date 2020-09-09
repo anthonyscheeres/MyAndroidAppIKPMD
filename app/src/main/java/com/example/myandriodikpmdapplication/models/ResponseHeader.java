@@ -1,13 +1,13 @@
 package com.example.myandriodikpmdapplication.models;
 
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResponseHeader {
+    Params ParamsObject;
     private float status;
     private float QTime;
-    Params ParamsObject;
 
     public ResponseHeader() {
     }
@@ -19,22 +19,22 @@ public class ResponseHeader {
         return status;
     }
 
-    public float getQTime() {
-        return QTime;
-    }
-
-    public Params getParams() {
-        return ParamsObject;
-    }
-
-    // Setter Methods
-
     public void setStatus(float status) {
         this.status = status;
     }
 
+    public float getQTime() {
+        return QTime;
+    }
+
+    // Setter Methods
+
     public void setQTime(float QTime) {
         this.QTime = QTime;
+    }
+
+    public Params getParams() {
+        return ParamsObject;
     }
 
     public void setParams(Params paramsObject) {
