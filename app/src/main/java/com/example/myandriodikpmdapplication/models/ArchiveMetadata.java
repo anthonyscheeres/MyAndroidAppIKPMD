@@ -17,8 +17,10 @@ public class ArchiveMetadata {
         private float uniq;
         ArrayList < Object > workable_servers = new ArrayList < Object > ();
 
+    public ArchiveMetadata() {
+    }
 
-        // Getter Methods
+// Getter Methods
 
         public float getCreated() {
             return created;

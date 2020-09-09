@@ -6,8 +6,10 @@ public class ArchiveManga {
         ResponseHeader ResponseHeaderObject;
         Response ResponseObject;
 
+    public ArchiveManga() {
+    }
 
-        // Getter Methods
+// Getter Methods
 
         public ResponseHeader getResponseHeader() {
             return ResponseHeaderObject;

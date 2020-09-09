@@ -1,5 +1,7 @@
 package com.example.myandriodikpmdapplication.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 
 public class Metadata {
@@ -13,7 +15,11 @@ public class Metadata {
         private String publicdate;
         private String uploader;
         private String addeddate;
+
+    @JsonProperty("identifier - ark")
         private String identifier_access;
+
+
         private String identifier_ark;
         private String ocr;
         private String coverleaf;
@@ -116,10 +122,12 @@ public class Metadata {
             this.addeddate = addeddate;
         }
 
+    @JsonProperty("identifier - ark")
         public void setIdentifier_access(String identifier_access) {
             this.identifier_access = identifier_access;
         }
 
+        @JsonProperty("identifier - ark")
         public void setIdentifier_ark(String identifier_ark) {
             this.identifier_ark = identifier_ark;
         }
