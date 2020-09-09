@@ -2,22 +2,14 @@ package com.example.myandriodikpmdapplication;
 
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.os.Build;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.Menu;
+import android.util.Base64;
 import android.view.View;
+import android.view.Menu;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.BitmapI;
@@ -32,20 +24,31 @@ import com.example.myandriodikpmdapplication.services.HttpService;
 import com.example.myandriodikpmdapplication.services.KweloIdenticon;
 import com.example.myandriodikpmdapplication.services.UserIDService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.navigation.NavigationView;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import java.io.IOException;
 import java.util.NoSuchElementException;
 
 public class MainActivity extends AppCompatActivity {
+
+    private AppBarConfiguration mAppBarConfiguration;
     //The app's name in local storage
     private final String NAME_OF_PREFERENCES = "Android_IKPMD8992";
-    ArchiveManga collectionOfComics;
     String userID = "userID";
     SharedPreferences settings;
     BitmapI imageBitmap = new BitmapService();
@@ -55,26 +58,19 @@ public class MainActivity extends AppCompatActivity {
     Http http = new HttpService();
     Token identification = new UserIDService();
     Identicon pfp = new KweloIdenticon();
-    GridView gridview2;
+    GridView gridView;
     ImageView imageView;
-    TextView textView;
-
+    TextView textView ;
     Archive archive = new ArchiveOrgUrlService();
-    private AppBarConfiguration mAppBarConfiguration;
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
         //Enable usage of local storage by creating this object at startup
         settings = getSharedPreferences(NAME_OF_PREFERENCES, MODE_PRIVATE);
-        try {
-
+        try{
             userID = identification.get(settings);
-        } catch (NoSuchElementException err) {
+        }catch (NoSuchElementException err){
             userID = database.getReference().push().getKey();
             new Thread(() -> {
                 identification.update(settings, userID, http, database, pfp);
@@ -86,48 +82,28 @@ public class MainActivity extends AppCompatActivity {
 
         //Initialize core functionality
 
-            Thread t = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
 
-                        //change to "manga_library" to make it a manga app
-                        collectionOfComics = archive.search("webcomicuniverse", http);
+        new Thread(() -> {
 
+            try {
+                ArchiveManga collectionOfComics = archive.search("webcomicuniverse", http);
 
-                    } catch (Exception e) {
-
-                    }
-                }});
-
-            t.start(); // spawn thread
-
-        try {
-            t.join();  // wait for thread to finish
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("idiot "+collectionOfComics.getResponse().getDocs().size());
-
-      //  gridview2 = findViewById(R.id.gridView1);
+            } catch (Exception e) {
+                System.out.println("idiot");
 
 
-      //  GridAdapterHome gridAdapterHome = new GridAdapterHome(this, archive, collectionOfComics.getResponse().getDocs());
-
-
-
-     //   gridview2.setAdapter(gridAdapterHome);
-
-
-   /*     gridview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+                e.printStackTrace();
             }
-        });
-*/
+
+            try {
+                ArchiveManga collectionOfManga = archive.search("manga_library", http);
+                System.out.println("hi idiot"+collectionOfManga.getResponseHeader());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }).start();
 
 
 
@@ -144,12 +120,10 @@ public class MainActivity extends AppCompatActivity {
 
 
                 // update UI
-                imageView = (ImageView) findViewById(R.id.imageView);
-                textView = (TextView) findViewById(R.id.textView);
-
-                imageView.setImageBitmap(decodedImage);
-
+                imageView = (ImageView) findViewById(R.id.f);
+                textView = (TextView) findViewById(R.id.f2);
                 textView.setText(userData.getUserID());
+                imageView.setImageBitmap(decodedImage);
             }
 
             @Override
@@ -158,6 +132,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
         // Initialize front end
@@ -186,7 +162,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
         Snackbar.make(navigationView, "Welcome ", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-
     }
 
     @Override
