@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,7 +40,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.beans.PropertyChangeSupport;
 import java.util.NoSuchElementException;
 
 public class MainActivity extends AppCompatActivity {
@@ -60,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
     GridView gridview2;
     ImageView imageView;
     TextView textView;
+
     Archive archive = new ArchiveOrgUrlService();
     private AppBarConfiguration mAppBarConfiguration;
-    protected PropertyChangeSupport propertyChangeSupport;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -74,15 +72,6 @@ public class MainActivity extends AppCompatActivity {
         //Enable usage of local storage by creating this object at startup
         settings = getSharedPreferences(NAME_OF_PREFERENCES, MODE_PRIVATE);
         try {
-
-
-
-
-
-
-
-
-
 
             userID = identification.get(settings);
         } catch (NoSuchElementException err) {
@@ -97,11 +86,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Initialize core functionality
 
-
-
-
-
-
             Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -109,9 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
                         //change to "manga_library" to make it a manga app
                         collectionOfComics = archive.search("webcomicuniverse", http);
-
-
-
 
 
                     } catch (Exception e) {
@@ -129,24 +110,24 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("idiot "+collectionOfComics.getResponse().getDocs().size());
 
-        gridview2 = findViewById(R.id.gridView1);
+      //  gridview2 = findViewById(R.id.gridView1);
 
 
-        GridAdapterHome gridAdapterHome = new GridAdapterHome(this, archive, collectionOfComics.getResponse().getDocs());
+      //  GridAdapterHome gridAdapterHome = new GridAdapterHome(this, archive, collectionOfComics.getResponse().getDocs());
 
 
 
-        gridview2.setAdapter(gridAdapterHome);
+     //   gridview2.setAdapter(gridAdapterHome);
 
 
-        gridview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+   /*     gridview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
             }
         });
-
+*/
 
 
 
@@ -159,8 +140,16 @@ public class MainActivity extends AppCompatActivity {
                 //Get data object from database and map to it's model
                 User userData = dataSnapshot.getValue(User.class);
 
-                //update UI based on database user data
-                updateUI(userData);
+                Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
+
+
+                // update UI
+                imageView = (ImageView) findViewById(R.id.imageView);
+                textView = (TextView) findViewById(R.id.textView);
+
+                imageView.setImageBitmap(decodedImage);
+
+                textView.setText(userData.getUserID());
             }
 
             @Override
@@ -198,20 +187,6 @@ public class MainActivity extends AppCompatActivity {
         Snackbar.make(navigationView, "Welcome ", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
 
-
-
-    }
-
-
-    private void updateUI(User userData){
-        Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
-
-
-        // update UI
-        imageView = findViewById(R.id.imageView);
-        textView = findViewById(R.id.textView);
-        textView.setText(userData.getUserID());
-        imageView.setImageBitmap(decodedImage);
     }
 
     @Override
