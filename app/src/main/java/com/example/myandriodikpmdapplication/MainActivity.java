@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 collectionOfComics = archive.search("webcomicuniverse", http);
 
 
-                gridview2 = findViewById(R.id.gridView);
+                gridview2 = findViewById(R.id.gridView1);
 
                 GridAdapterHome gridAdapterHome = new GridAdapterHome(this, archive, collectionOfComics.getResponse().getDocs());
 
