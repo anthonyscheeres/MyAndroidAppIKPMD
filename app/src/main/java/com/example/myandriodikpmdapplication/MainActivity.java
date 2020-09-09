@@ -89,17 +89,14 @@ public class MainActivity extends AppCompatActivity {
             ArchiveManga collectionOfComics = archive.search("webcomicuniverse", http);
 
         } catch (Exception e) {
-            System.out.println("idiot");
 
-
-            e.printStackTrace();
         }
 
         try {
             ArchiveManga collectionOfManga = archive.search("manga_library", http);
-            System.out.println("hi idiot"+collectionOfManga.getResponseHeader());
+
         } catch (Exception e) {
-            e.printStackTrace();
+          
         }
 
 

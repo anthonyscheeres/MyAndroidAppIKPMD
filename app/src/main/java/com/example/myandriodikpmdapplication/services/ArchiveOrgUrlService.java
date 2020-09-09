@@ -17,16 +17,10 @@ public class ArchiveOrgUrlService implements Archive {
 //got this url from https://archive.org/advancedsearch.php#raw
         String url = "https://archive.org/advancedsearch.php?q=" + search + "&fl[]=avg_rating&fl[]=description&fl[]=identifier&fl[]=title&sort[]=downloads+desc&sort[]=&sort[]=&rows=100&page=1&output=json";
 
-        System.out.println("idiot"+url);
-
 
         String json = http.send(url, Protocol.GET.toString());
 
-        System.out.println("idiot"+json);
-
         ArchiveManga MangaCollection = objectMapper.readValue(json, ArchiveManga.class);
-
-
 
         return MangaCollection;
 
