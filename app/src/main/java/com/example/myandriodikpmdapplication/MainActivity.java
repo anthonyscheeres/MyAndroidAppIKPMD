@@ -2,15 +2,20 @@ package com.example.myandriodikpmdapplication;
 
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
-import android.view.View;
 import android.view.Menu;
-import android.widget.AdapterView;
+import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.BitmapI;
@@ -25,30 +30,19 @@ import com.example.myandriodikpmdapplication.services.HttpService;
 import com.example.myandriodikpmdapplication.services.KweloIdenticon;
 import com.example.myandriodikpmdapplication.services.UserIDService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
-
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration mAppBarConfiguration;
     //The app's name in local storage
     private final String NAME_OF_PREFERENCES = "Android_IKPMD8992";
     String userID = "userID";
@@ -62,20 +56,20 @@ public class MainActivity extends AppCompatActivity {
     Identicon pfp = new KweloIdenticon();
     GridView gridView;
     ImageView imageView;
-    TextView textView ;
+    TextView textView;
     Archive archive = new ArchiveOrgUrlService();
     ArchiveManga collectionOfComics;
     ArrayList<Object> docs;
-
+    private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Enable usage of local storage by creating this object at startup
         settings = getSharedPreferences(NAME_OF_PREFERENCES, MODE_PRIVATE);
-        try{
+        try {
             userID = identification.get(settings);
-        }catch (NoSuchElementException err){
+        } catch (NoSuchElementException err) {
             userID = database.getReference().push().getKey();
             new Thread(() -> {
                 identification.update(settings, userID, http, database, pfp);
@@ -106,39 +100,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-
         }).start();
-
-
-/*
-
-//this code can only be ran on the main thread
-        GridView gridview2;
-
-        gridview2 = findViewById(R.id.gridView2);
-
-
-        GridAdapterHome gridAdapterHome = new GridAdapterHome(this, archive, docs);
-
-
-
-        gridview2.setAdapter(gridAdapterHome);
-
-
-        gridview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-            }
-        });
-
-
-
-*/
-
-
-
 
         //Get user data
         myRef.addValueEventListener(new ValueEventListener() {
@@ -153,8 +115,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                 // update UI
-                imageView = (ImageView) findViewById(R.id.f);
-                textView = (TextView) findViewById(R.id.f2);
+                imageView = findViewById(R.id.f);
+                textView = findViewById(R.id.f2);
                 textView.setText(userData.getUserID());
                 imageView.setImageBitmap(decodedImage);
             }
@@ -167,10 +129,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
         // Initialize front end
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);

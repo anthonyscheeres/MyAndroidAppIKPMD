@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.myandriodikpmdapplication.GridAdapterHome;
 import com.example.myandriodikpmdapplication.R;
 
 public class HomeFragment extends Fragment {
@@ -19,7 +22,26 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        View root = inflater.inflate(R.layout.grid_collection, container, false);
+
+        GridView gridview2;
+
+        gridview2 = root.findViewById(R.id.gridView2);
+
+
+        GridAdapterHome gridAdapterHome = new GridAdapterHome(getActivity(), homeViewModel.getR(), homeViewModel.getmText().getValue());
+
+
+        gridview2.setAdapter(gridAdapterHome);
+
+
+        gridview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+            }
+        });
 
 
         return root;

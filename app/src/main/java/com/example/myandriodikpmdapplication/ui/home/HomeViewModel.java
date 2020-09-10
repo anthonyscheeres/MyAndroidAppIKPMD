@@ -1,19 +1,27 @@
 package com.example.myandriodikpmdapplication.ui.home;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.myandriodikpmdapplication.interfaces.Archive;
+
+import java.util.ArrayList;
+
 public class HomeViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private MutableLiveData<ArrayList<Object>> mText;
+    private Archive r;
 
-    public HomeViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+    public HomeViewModel(MutableLiveData<ArrayList<Object>> mText, Archive r) {
+        this.mText = mText;
+        this.r = r;
     }
 
-    public LiveData<String> getText() {
+    public MutableLiveData<ArrayList<Object>> getmText() {
         return mText;
+    }
+
+    public Archive getR() {
+        return r;
     }
 }

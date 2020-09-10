@@ -42,7 +42,7 @@ public class GridAdapterHome extends BaseAdapter {
     @Override
     public Object getItem(int i) {
 
-        System.out.println("idiotss" +docs.size());
+        System.out.println("idiotss" + docs.size());
 
 
         return docs.get(i);
@@ -50,7 +50,6 @@ public class GridAdapterHome extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-
 
 
         return 0;
@@ -62,7 +61,6 @@ public class GridAdapterHome extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
 
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
 
 
         if (view == null && docs != null) {
