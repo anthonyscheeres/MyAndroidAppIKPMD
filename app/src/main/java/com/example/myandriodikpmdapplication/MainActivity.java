@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         // Read from the database
 
 
-
         // Initialize front end
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -94,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
 
 
-
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -106,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
         Snackbar.make(navigationView, "Welcome ", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-
 
 
         //Get user data
@@ -125,8 +122,8 @@ public class MainActivity extends AppCompatActivity {
                 // update UI
                 imageView = (ImageView) findViewById(R.id.f);
                 textView = (TextView) findViewById(R.id.f2);
-               // textView.setText(userData.getUserID());
-               // imageView.setImageBitmap(decodedImage);
+                // textView.setText(userData.getUserID());
+                // imageView.setImageBitmap(decodedImage);
             }
 
             @Override

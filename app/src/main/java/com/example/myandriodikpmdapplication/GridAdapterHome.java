@@ -10,21 +10,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myandriodikpmdapplication.interfaces.Archive;
+import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.services.DownloadImageService;
+import com.example.myandriodikpmdapplication.ui.home.HomeViewModel;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class GridAdapterHome extends BaseAdapter {
 
     Context context;
     Archive archive;
-    ArrayList<Object> docs;
+    ArrayList<Comic> docs;
     private LayoutInflater layoutInflater;
 
-    public GridAdapterHome(Context context, Archive archive, ArrayList<Object> docs) {
+    public GridAdapterHome(Context context, Archive archive, ArrayList<Comic> docs) {
         this.context = context;
         this.archive = archive;
         this.docs = docs;
@@ -62,49 +64,28 @@ public class GridAdapterHome extends BaseAdapter {
 
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-
-        if (view == null && docs != null) {
+        if (view == null) {
             view = new View(context);
 
             view = layoutInflater.inflate(R.layout.grid_layout, null);
 
-            ImageView imageView2 = view.findViewById(R.id.imageView2);
-
-            TextView textView2 = view.findViewById(R.id.textView);
-
-            Object doc = docs.get(i);
-
-
-            Class<?> clazz = doc.getClass();
-            Field field = null; //Note, this can throw an exception if the field doesn't exist.
-
-            try {
-
-
-                field = clazz.getField("title");
-
-                Object title = field.getChar(doc);
-
-                field = clazz.getField("identifier");
-
-                Object identifier = field.getChar(doc);
-
-                String url = archive.image(identifier.toString());
-
-
-                new DownloadImageService(imageView2)
-                        .execute(url);
-
-
-                textView2.setText(title.toString());
-
-
-            } catch (NoSuchFieldException | IllegalAccessException e) {
-
-            }
-
-
         }
+
+
+        ImageView imageView2 = view.findViewById(R.id.imageView2);
+
+        TextView textView2 = view.findViewById(R.id.textView);
+
+        Comic doc = docs.get(i);
+
+
+        String url = archive.image(doc.getIdentifier());
+
+
+        new DownloadImageService(imageView2)
+                .execute(url);
+
+        textView2.setText(doc.getTitle());
 
 
         return view;

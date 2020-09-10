@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.models.ArchiveManga;
+import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.models.Data;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.services.HttpService;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 public class HomeViewModel extends ViewModel {
 
 
-    ArrayList<Object> docs;
+    ArrayList<Comic> docs;
 
 
     public HomeViewModel() {
@@ -69,7 +70,7 @@ public class HomeViewModel extends ViewModel {
 
     }
 
-    public ArrayList<Object> getDocs() {
+    public ArrayList<Comic> getDocs() {
         return docs;
     }
 }

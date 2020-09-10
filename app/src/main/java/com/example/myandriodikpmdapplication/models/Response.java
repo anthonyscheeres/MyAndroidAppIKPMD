@@ -6,35 +6,22 @@ import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Response {
-    ArrayList<Object> docs = new ArrayList<Object>();
+    ArrayList<Comic> docs = new ArrayList<Comic>();
     private float numFound;
     private float start;
 
     public Response() {
     }
 
-
-    // Getter Methods
+    public ArrayList<Comic> getDocs() {
+        return docs;
+    }
 
     public float getNumFound() {
         return numFound;
     }
 
-    public void setNumFound(float numFound) {
-        this.numFound = numFound;
-    }
-
-    // Setter Methods
-
     public float getStart() {
         return start;
-    }
-
-    public void setStart(float start) {
-        this.start = start;
-    }
-
-    public ArrayList<Object> getDocs() {
-        return docs;
     }
 }

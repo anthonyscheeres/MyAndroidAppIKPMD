@@ -41,6 +41,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+
+                //switch view here to go to chapter explorer
+
             }
         });
 
