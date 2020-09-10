@@ -10,6 +10,7 @@ import com.example.myandriodikpmdapplication.services.HttpService;
 import com.example.myandriodikpmdapplication.services.JoinExample;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class HomeViewModel extends ViewModel {
@@ -23,7 +24,7 @@ public class HomeViewModel extends ViewModel {
 
     }
 
-    private ArrayList<Object> getData() throws NullPointerException{
+    private ArrayList<Object> getData() {
 
         Http http = new HttpService();
 
@@ -32,24 +33,34 @@ public class HomeViewModel extends ViewModel {
 
         ArrayList<Object> docs = null;
 try{
+
+
+
     JoinExample runnable=new JoinExample();
+
+
+
     Thread t1 = new Thread(runnable);
 
+    t1.start();
+    
         //change to manga_library to turn it into manga app
-                ArchiveManga collectionOfComics = archive.search("webcomicuniverse", http);
 
-                System.out.println("idiot zz");
 
-    docs = collectionOfComics.getResponse().getDocs();
+              ArchiveManga collectionOfComics = archive.search("webcomicuniverse", http);
+
+
+
+  docs = collectionOfComics.getResponse().getDocs();
                 t1.join();
 
             } catch (Exception e) {
-
+    System.out.println("idiot zz");
             }
 
 if (docs==null){
 
-    throw new NullPointerException();
+    docs = new ArrayList<Object>();
 
 }
 
