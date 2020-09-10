@@ -16,27 +16,32 @@ import java.util.concurrent.atomic.AtomicReference;
 public class HomeViewModel extends ViewModel {
 
 
-    AtomicReference<ArrayList<Object>> docsz;
+    ArrayList<Object> docs;
 
-    ArrayList<Object> docs = null;
 
 
 
 
     public HomeViewModel() {
 
-        docsz.set(getData());
+        System.out.println("idiot " +Data.docs);
+
+        getData();
+
+        docs = Data.docs;
+
+
+
+        System.out.println("idiot " +Data.docs);
 
     }
 
-    private ArrayList<Object> getData() {
+    private void getData() {
 
         Http http = new HttpService();
 
         Archive archive = new ArchiveOrgUrlService();
 
-
-        try {
 
             Thread thread = new Thread(){
 
@@ -47,7 +52,7 @@ public class HomeViewModel extends ViewModel {
                     ArchiveManga collectionOfComics = null;
                     try {
                         collectionOfComics = archive.search("webcomicuniverse", http);
-                        System.out.println("idiot zzzzzzzzzzzzzzz");
+
                     } catch (Exception e) {
 
                     }
@@ -61,26 +66,17 @@ public class HomeViewModel extends ViewModel {
 
             thread.start();
 
-            thread.join();
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
 
-            docs = Data.docs;
+            }
 
-        } catch (Exception e) {
-            System.out.println("idiot zz");
-        }
 
-        if (docs == null) {
-
-            docs = new ArrayList<Object>();
-
-        }
-
-        return docs;
 
     }
 
-
-    public AtomicReference<ArrayList<Object>> getDocs() {
-        return docsz;
+    public ArrayList<Object> getDocs() {
+        return docs;
     }
 }

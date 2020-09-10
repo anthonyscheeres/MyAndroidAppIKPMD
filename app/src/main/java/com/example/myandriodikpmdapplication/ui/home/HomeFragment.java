@@ -30,7 +30,7 @@ public class HomeFragment extends Fragment {
         gridview2 = root.findViewById(R.id.gridView2);
 
 
-        GridAdapterHome gridAdapterHome = new GridAdapterHome(getActivity(), new ArchiveOrgUrlService(), homeViewModel.getDocs().get());
+        GridAdapterHome gridAdapterHome = new GridAdapterHome(getActivity(), new ArchiveOrgUrlService(), homeViewModel.getDocs());
 
 
         gridview2.setAdapter(gridAdapterHome);
