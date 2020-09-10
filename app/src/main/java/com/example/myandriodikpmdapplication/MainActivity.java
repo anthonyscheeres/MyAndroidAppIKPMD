@@ -75,20 +75,38 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference(userID);
         // Read from the database
 
+        //Get user data
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            // This method is called once with the initial value and again
+            // whenever data at this location is updated.
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //Get data object from database and map to it's model
+                User userData = dataSnapshot.getValue(User.class);
+
+                Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
+
+
+              
+                // update UI
+                imageView = (ImageView) findViewById(R.id.f);
+                textView = (TextView) findViewById(R.id.f2);
+                //textView.setText(userData.getUserID());
+                //imageView.setImageBitmap(decodedImage);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+            }
+        });
 
         // Initialize front end
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "No messages", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
@@ -106,32 +124,6 @@ public class MainActivity extends AppCompatActivity {
                 .setAction("Action", null).show();
 
 
-        //Get user data
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            // This method is called once with the initial value and again
-            // whenever data at this location is updated.
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //Get data object from database and map to it's model
-                User userData = dataSnapshot.getValue(User.class);
-
-                Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
-
-                findViewById(R.id.nav_view);
-
-                // update UI
-                imageView = (ImageView) findViewById(R.id.f);
-                textView = (TextView) findViewById(R.id.f2);
-                // textView.setText(userData.getUserID());
-                // imageView.setImageBitmap(decodedImage);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-
-            }
-        });
 
 
     }
