@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myandriodikpmdapplication.GridAdapterHome;
 import com.example.myandriodikpmdapplication.R;
+import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 
 public class HomeFragment extends Fragment {
 
@@ -29,7 +30,7 @@ public class HomeFragment extends Fragment {
         gridview2 = root.findViewById(R.id.gridView2);
 
 
-        GridAdapterHome gridAdapterHome = new GridAdapterHome(getActivity(), homeViewModel.getR(), homeViewModel.getmText().getValue());
+        GridAdapterHome gridAdapterHome = new GridAdapterHome(getActivity(), new ArchiveOrgUrlService(), homeViewModel.getDocs().get());
 
 
         gridview2.setAdapter(gridAdapterHome);

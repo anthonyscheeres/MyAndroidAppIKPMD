@@ -82,26 +82,6 @@ public class MainActivity extends AppCompatActivity {
         //Initialize core functionality
 
 
-        new Thread(() -> {
-
-            try {
-
-                //change to manga_library to turn it into manga app
-                this.collectionOfComics = archive.search("webcomicuniverse", http);
-
-                this.docs = collectionOfComics.getResponse().getDocs();
-
-
-            } catch (Exception e) {
-                System.out.println("idiot");
-
-
-                e.printStackTrace();
-            }
-
-
-        }).start();
-
         //Get user data
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
