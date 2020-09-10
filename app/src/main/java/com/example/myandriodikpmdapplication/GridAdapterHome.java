@@ -60,16 +60,12 @@ public class GridAdapterHome extends BaseAdapter {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        System.out.println("idiotss" +docs.size());
-
-        System.out.println("idiot");
 
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 
-        System.out.println("idiot");
 
-        if (view == null) {
+        if (view == null && docs != null) {
             view = new View(context);
 
             view = layoutInflater.inflate(R.layout.grid_layout, null);
@@ -97,8 +93,6 @@ public class GridAdapterHome extends BaseAdapter {
 
                 String url = archive.image(identifier.toString());
 
-
-                System.out.println("idiot" + url);
 
                 new DownloadImageService(imageView2)
                         .execute(url);

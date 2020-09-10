@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.view.Menu;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -42,6 +43,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 public class MainActivity extends AppCompatActivity {
@@ -62,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
     ImageView imageView;
     TextView textView ;
     Archive archive = new ArchiveOrgUrlService();
+    ArchiveManga collectionOfComics;
+    ArrayList<Object> docs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +91,12 @@ public class MainActivity extends AppCompatActivity {
         new Thread(() -> {
 
             try {
-                ArchiveManga collectionOfComics = archive.search("webcomicuniverse", http);
+
+                //change to manga_library to turn it into manga app
+                this.collectionOfComics = archive.search("webcomicuniverse", http);
+
+                this.docs = collectionOfComics.getResponse().getDocs();
+
 
             } catch (Exception e) {
                 System.out.println("idiot");
@@ -95,15 +105,38 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            try {
-                ArchiveManga collectionOfManga = archive.search("manga_library", http);
-                System.out.println("hi idiot"+collectionOfManga.getResponseHeader());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
 
 
         }).start();
+
+
+/*
+
+//this code can only be ran on the main thread
+        GridView gridview2;
+
+        gridview2 = findViewById(R.id.gridView2);
+
+
+        GridAdapterHome gridAdapterHome = new GridAdapterHome(this, archive, docs);
+
+
+
+        gridview2.setAdapter(gridAdapterHome);
+
+
+        gridview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+            }
+        });
+
+
+
+*/
+
 
 
 
