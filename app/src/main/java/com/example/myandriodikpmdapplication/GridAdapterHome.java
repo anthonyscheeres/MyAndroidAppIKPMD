@@ -68,7 +68,7 @@ public class GridAdapterHome extends BaseAdapter {
 
             view = layoutInflater.inflate(R.layout.grid_layout, null);
 
-            ImageView imageView2 = view.findViewById(R.id.textView);
+            ImageView imageView2 = view.findViewById(R.id.imageView2);
 
             TextView textView2 = view.findViewById(R.id.textView);
 

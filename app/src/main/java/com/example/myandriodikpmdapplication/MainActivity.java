@@ -2,21 +2,26 @@ package com.example.myandriodikpmdapplication;
 
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
-import android.view.View;
 import android.view.Menu;
+import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.BitmapI;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.interfaces.Identicon;
 import com.example.myandriodikpmdapplication.interfaces.Token;
-import com.example.myandriodikpmdapplication.models.ArchiveManga;
 import com.example.myandriodikpmdapplication.models.User;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.services.BitmapService;
@@ -24,29 +29,18 @@ import com.example.myandriodikpmdapplication.services.HttpService;
 import com.example.myandriodikpmdapplication.services.KweloIdenticon;
 import com.example.myandriodikpmdapplication.services.UserIDService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
-
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import java.io.IOException;
 import java.util.NoSuchElementException;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration mAppBarConfiguration;
     //The app's name in local storage
     private final String NAME_OF_PREFERENCES = "Android_IKPMD8992";
     String userID = "userID";
@@ -60,18 +54,18 @@ public class MainActivity extends AppCompatActivity {
     Identicon pfp = new KweloIdenticon();
     GridView gridView;
     ImageView imageView;
-    TextView textView ;
+    TextView textView;
     Archive archive = new ArchiveOrgUrlService();
-
+    private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Enable usage of local storage by creating this object at startup
         settings = getSharedPreferences(NAME_OF_PREFERENCES, MODE_PRIVATE);
-        try{
+        try {
             userID = identification.get(settings);
-        }catch (NoSuchElementException err){
+        } catch (NoSuchElementException err) {
             userID = database.getReference().push().getKey();
             new Thread(() -> {
                 identification.update(settings, userID, http, database, pfp);
@@ -80,33 +74,6 @@ public class MainActivity extends AppCompatActivity {
         //Initialize the object that allows modifying the user his account data
         DatabaseReference myRef = database.getReference(userID);
         // Read from the database
-
-        //Get user data
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            // This method is called once with the initial value and again
-            // whenever data at this location is updated.
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //Get data object from database and map to it's model
-                User userData = dataSnapshot.getValue(User.class);
-
-                Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
-
-
-                // update UI
-                imageView = (ImageView) findViewById(R.id.f);
-                textView = (TextView) findViewById(R.id.f2);
-                textView.setText(userData.getUserID());
-                imageView.setImageBitmap(decodedImage);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-
-            }
-        });
-
 
 
 
@@ -125,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -136,6 +106,37 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
         Snackbar.make(navigationView, "Welcome ", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
+
+
+
+        //Get user data
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            // This method is called once with the initial value and again
+            // whenever data at this location is updated.
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //Get data object from database and map to it's model
+                User userData = dataSnapshot.getValue(User.class);
+
+                Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
+
+                findViewById(R.id.nav_view);
+
+                // update UI
+                imageView = (ImageView) findViewById(R.id.f);
+                textView = (TextView) findViewById(R.id.f2);
+               // textView.setText(userData.getUserID());
+               // imageView.setImageBitmap(decodedImage);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+            }
+        });
+
+
     }
 
     @Override
