@@ -43,25 +43,15 @@ public class HomeViewModel extends ViewModel {
 
 
             public void run() {
-
-
                 ArchiveSearch collectionOfComics = null;
                 try {
-
                     //webcomicuniverse || manga_library
                     collectionOfComics = archive.search("webcomicuniverse", http);
-
-
                 } catch (Exception e) {
-
-
                 }
 
                 if (collectionOfComics != null) {
-
                     DataHolder.docs = collectionOfComics.getResponse().getDocs();
-
-
                 }
             }
         };

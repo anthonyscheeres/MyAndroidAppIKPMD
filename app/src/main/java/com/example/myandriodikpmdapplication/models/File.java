@@ -31,4 +31,20 @@ public class File {
     public String getFormat() {
         return format;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
 }

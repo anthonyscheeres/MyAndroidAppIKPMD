@@ -5,18 +5,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ArchiveSearch {
-    ResponseHeader ResponseHeader;
-    Response Response;
+
+    Response response;
 
     public ArchiveSearch() {
     }
-// Getter Methods
 
-    public com.example.myandriodikpmdapplication.models.ResponseHeader getResponseHeader() {
-        return ResponseHeader;
+    public Response getResponse() {
+        return response;
     }
 
-    public com.example.myandriodikpmdapplication.models.Response getResponse() {
-        return Response;
+    public void setResponse(Response response) {
+        this.response = response;
     }
 }

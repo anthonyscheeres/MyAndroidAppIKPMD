@@ -43,8 +43,14 @@ public class ComicDetailsFragment extends Fragment {
 
         gridview2 = root.findViewById(R.id.listView);
 
+        ArrayList<File> comics = null;
 
-        ArrayList<File> comics = DataHolder.detailsComic.getMetadata().getFiles();
+        if (DataHolder.detailsComic!=null){
+
+
+            comics = DataHolder.detailsComic.getMetadata().getFiles();
+
+        }
 
 
         ListAdapterDetails gridAdapterHome = new ListAdapterDetails(getActivity(), comics);
