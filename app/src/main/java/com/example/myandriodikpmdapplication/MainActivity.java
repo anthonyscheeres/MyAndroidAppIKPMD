@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,14 +16,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.BitmapI;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.interfaces.Identicon;
 import com.example.myandriodikpmdapplication.interfaces.Token;
 import com.example.myandriodikpmdapplication.models.Data;
 import com.example.myandriodikpmdapplication.models.User;
-import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.services.BitmapService;
 import com.example.myandriodikpmdapplication.services.HttpService;
 import com.example.myandriodikpmdapplication.services.KweloIdenticon;
@@ -80,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
-        View hView =  navigationView.inflateHeaderView(R.layout.nav_header_main);
+        View hView = navigationView.inflateHeaderView(R.layout.nav_header_main);
 
 
         //Get user data
@@ -95,11 +92,10 @@ public class MainActivity extends AppCompatActivity {
                 Data.user = userData;
 
 
-
                 Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
 
-                ImageView imageView = (ImageView) hView.findViewById(R.id.f);
-                TextView textView = (TextView) hView.findViewById(R.id.f2);
+                ImageView imageView = hView.findViewById(R.id.f);
+                TextView textView = hView.findViewById(R.id.f2);
                 textView.setText(userData.getUserID());
                 imageView.setImageBitmap(decodedImage);
             }
@@ -110,9 +106,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
 
 
         // Passing each menu ID as a set of Ids because each

@@ -44,7 +44,7 @@ public class GridAdapterHome extends BaseAdapter {
     @Override
     public Object getItem(int i) {
 
-        if (docs ==null){
+        if (docs == null) {
             return 0;
         }
 
@@ -84,10 +84,8 @@ public class GridAdapterHome extends BaseAdapter {
         String url = archive.image(doc.getIdentifier());
 
 
-        new DownloadImageService(imageView2)
+        new DownloadImageService(imageView2, doc.getTitle(), textView2)
                 .execute(url);
-
-        textView2.setText(doc.getTitle());
 
 
         return view;

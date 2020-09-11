@@ -1,7 +1,7 @@
 package com.example.myandriodikpmdapplication.interfaces;
 
-import com.example.myandriodikpmdapplication.models.ArchiveSearch;
 import com.example.myandriodikpmdapplication.models.ArchiveMetadata;
+import com.example.myandriodikpmdapplication.models.ArchiveSearch;
 
 public interface Archive {
 

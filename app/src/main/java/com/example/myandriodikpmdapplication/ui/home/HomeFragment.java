@@ -1,5 +1,6 @@
 package com.example.myandriodikpmdapplication.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +10,11 @@ import android.widget.GridView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.myandriodikpmdapplication.ComicDetailsFragment;
 import com.example.myandriodikpmdapplication.GridAdapterHome;
 import com.example.myandriodikpmdapplication.R;
 import com.example.myandriodikpmdapplication.models.Comic;
@@ -57,6 +61,7 @@ public class HomeFragment extends Fragment {
                 }
 
                 Data.detailsComic = comics.get(position);
+                
 
             }
         });
