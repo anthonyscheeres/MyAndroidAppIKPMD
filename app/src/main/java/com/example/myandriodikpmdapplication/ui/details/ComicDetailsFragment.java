@@ -1,4 +1,4 @@
-package com.example.myandriodikpmdapplication;
+package com.example.myandriodikpmdapplication.ui.details;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -15,12 +13,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.myandriodikpmdapplication.adapters.GridAdapterHome;
+import com.example.myandriodikpmdapplication.R;
+import com.example.myandriodikpmdapplication.ScrollingPdfViewActivity;
 import com.example.myandriodikpmdapplication.adapters.ListAdapterDetails;
+import com.example.myandriodikpmdapplication.holders.DataHolder;
 import com.example.myandriodikpmdapplication.models.Comic;
-import com.example.myandriodikpmdapplication.holders.Data;
 import com.example.myandriodikpmdapplication.models.File;
-import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 
 import java.util.ArrayList;
 
@@ -37,20 +35,19 @@ public class ComicDetailsFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
 
-        Comic comic = Data.detailsComic;
+        Comic comic = DataHolder.detailsComic;
 
-        View root =  inflater.inflate(R.layout.comic_details_fragment, container, false);
+        View root = inflater.inflate(R.layout.comic_details_fragment, container, false);
 
         ListView gridview2;
 
         gridview2 = root.findViewById(R.id.listView);
 
 
-        ArrayList<File> comics = Data.detailsComic.getMetadata().getFiles();
+        ArrayList<File> comics = DataHolder.detailsComic.getMetadata().getFiles();
 
 
-
-        ListAdapterDetails gridAdapterHome = new ListAdapterDetails(getActivity(), comics) ;
+        ListAdapterDetails gridAdapterHome = new ListAdapterDetails(getActivity(), comics);
 
 
         gridview2.setAdapter(gridAdapterHome);
@@ -65,15 +62,14 @@ public class ComicDetailsFragment extends Fragment {
                 //switch view here to go to chapter explorer
 
 
-                ArrayList<File> comics = Data.detailsComic.getMetadata().getFiles();
-
+                ArrayList<File> comics = DataHolder.detailsComic.getMetadata().getFiles();
 
 
                 if (comics == null) {
                     return;
                 }
 
-                Data.pdfUrl = comics.get(position).getName();
+                DataHolder.pdfUrl = comics.get(position).getName();
 
                 startActivity(new Intent(getContext(), ScrollingPdfViewActivity.class));
 
@@ -81,8 +77,7 @@ public class ComicDetailsFragment extends Fragment {
         });
 
 
-return root;
-
+        return root;
 
 
     }
@@ -92,10 +87,6 @@ return root;
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(ComicDetailsViewModel.class);
         // TODO: Use the ViewModel
-
-
-
-
 
 
     }

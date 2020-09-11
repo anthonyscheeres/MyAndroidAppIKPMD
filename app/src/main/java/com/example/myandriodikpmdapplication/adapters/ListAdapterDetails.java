@@ -7,12 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.example.myandriodikpmdapplication.R;
-import com.example.myandriodikpmdapplication.holders.GridViewHolder;
 import com.example.myandriodikpmdapplication.holders.ListViewHolder;
-import com.example.myandriodikpmdapplication.interfaces.Archive;
-import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.models.File;
-import com.example.myandriodikpmdapplication.services.DownloadImageService;
 
 import java.util.ArrayList;
 
@@ -60,20 +56,17 @@ public class ListAdapterDetails extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.comic_details_fragment, null);
 
 
-
             holder.text = view.findViewById(R.id.textView4);
 
             view.setTag(holder);
-        }
-        else{
-            holder= (ListViewHolder) view.getTag();
+        } else {
+            holder = (ListViewHolder) view.getTag();
         }
 
 
         holder.text = view.findViewById(R.id.textView4);
 
         File doc = files.get(i);
-
 
 
         return view;

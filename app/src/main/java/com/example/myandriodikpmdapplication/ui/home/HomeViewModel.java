@@ -2,11 +2,11 @@ package com.example.myandriodikpmdapplication.ui.home;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.myandriodikpmdapplication.holders.DataHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.models.ArchiveSearch;
 import com.example.myandriodikpmdapplication.models.Comic;
-import com.example.myandriodikpmdapplication.holders.Data;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.services.HttpService;
 
@@ -23,7 +23,7 @@ public class HomeViewModel extends ViewModel {
 
         getData();
 
-        docs = Data.docs;
+        docs = DataHolder.docs;
 
 
     }
@@ -34,7 +34,7 @@ public class HomeViewModel extends ViewModel {
 
         Archive archive = new ArchiveOrgUrlService();
 
-        if (Data.docs != null) {
+        if (DataHolder.docs != null) {
             return;
         }
 
@@ -59,7 +59,7 @@ public class HomeViewModel extends ViewModel {
 
                 if (collectionOfComics != null) {
 
-                    Data.docs = collectionOfComics.getResponse().getDocs();
+                    DataHolder.docs = collectionOfComics.getResponse().getDocs();
 
 
                 }

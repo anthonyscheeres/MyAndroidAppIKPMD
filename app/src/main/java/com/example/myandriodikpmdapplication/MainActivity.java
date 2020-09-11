@@ -16,11 +16,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.myandriodikpmdapplication.holders.DataHolder;
 import com.example.myandriodikpmdapplication.interfaces.BitmapI;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.interfaces.Identicon;
 import com.example.myandriodikpmdapplication.interfaces.Token;
-import com.example.myandriodikpmdapplication.holders.Data;
 import com.example.myandriodikpmdapplication.models.User;
 import com.example.myandriodikpmdapplication.services.BitmapService;
 import com.example.myandriodikpmdapplication.services.HttpService;
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 //Get data object from database and map to it's model
                 User userData = dataSnapshot.getValue(User.class);
 
-                Data.user = userData;
+                DataHolder.user = userData;
 
 
                 Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());

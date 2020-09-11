@@ -18,5 +18,4 @@ public class GridViewHolder extends RecyclerView.ViewHolder {
     }
 
 
-
 }

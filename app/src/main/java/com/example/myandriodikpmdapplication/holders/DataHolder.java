@@ -5,7 +5,7 @@ import com.example.myandriodikpmdapplication.models.User;
 
 import java.util.ArrayList;
 
-public class Data {
+public class DataHolder {
     public static ArrayList<Comic> docs;
 
     public static User user;

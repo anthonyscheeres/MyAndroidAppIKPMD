@@ -13,10 +13,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myandriodikpmdapplication.DetailsActivity;
-import com.example.myandriodikpmdapplication.adapters.GridAdapterHome;
 import com.example.myandriodikpmdapplication.R;
+import com.example.myandriodikpmdapplication.adapters.GridAdapterHome;
+import com.example.myandriodikpmdapplication.holders.DataHolder;
 import com.example.myandriodikpmdapplication.models.Comic;
-import com.example.myandriodikpmdapplication.holders.Data;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 
 import java.util.ArrayList;
@@ -51,14 +51,14 @@ public class HomeFragment extends Fragment {
                 //switch view here to go to chapter explorer
 
 
-                ArrayList<Comic> comics = Data.docs;
+                ArrayList<Comic> comics = DataHolder.docs;
 
 
                 if (comics == null) {
                     return;
                 }
 
-                Data.detailsComic = comics.get(position);
+                DataHolder.detailsComic = comics.get(position);
                 startActivity(new Intent(getContext(), DetailsActivity.class));
 
             }

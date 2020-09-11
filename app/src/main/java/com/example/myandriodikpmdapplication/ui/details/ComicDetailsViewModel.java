@@ -1,12 +1,12 @@
-package com.example.myandriodikpmdapplication;
+package com.example.myandriodikpmdapplication.ui.details;
 
 import androidx.lifecycle.ViewModel;
 
 import com.example.myandriodikpmdapplication.controllers.ComicController;
+import com.example.myandriodikpmdapplication.holders.DataHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.models.Comic;
-import com.example.myandriodikpmdapplication.holders.Data;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.services.HttpService;
 
@@ -17,7 +17,7 @@ public class ComicDetailsViewModel extends ViewModel {
     public ComicDetailsViewModel() {
 
 
-        if (Data.detailsComic == null) {
+        if (DataHolder.detailsComic == null) {
             return;
         }
 
@@ -29,15 +29,13 @@ public class ComicDetailsViewModel extends ViewModel {
         Archive archive = new ArchiveOrgUrlService();
 
 
-        Comic comic = Data.detailsComic;
+        Comic comic = DataHolder.detailsComic;
 
         try {
             controller.addMetadata(comic, archive, http);
         } catch (Exception e) {
 
         }
-
-
 
 
     }

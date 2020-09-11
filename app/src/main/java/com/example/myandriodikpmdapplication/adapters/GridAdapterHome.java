@@ -10,8 +10,8 @@ import android.widget.BaseAdapter;
 import androidx.annotation.RequiresApi;
 
 import com.example.myandriodikpmdapplication.R;
-import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.holders.GridViewHolder;
+import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.services.DownloadImageService;
 
@@ -69,18 +69,18 @@ public class GridAdapterHome extends BaseAdapter {
         if (view == null) {
             view = new View(context);
 
-           holder = new GridViewHolder(view);
+            holder = new GridViewHolder(view);
 
             view = layoutInflater.inflate(R.layout.grid_layout, null);
 
-            holder.image= view.findViewById(R.id.imageView2);
+            holder.image = view.findViewById(R.id.imageView2);
 
             holder.text = view.findViewById(R.id.textView);
 
             view.setTag(holder);
-        }
-        else{
-            holder= (GridViewHolder) view.getTag();
+
+        } else {
+            holder = (GridViewHolder) view.getTag();
         }
 
         holder.image = view.findViewById(R.id.imageView2);
