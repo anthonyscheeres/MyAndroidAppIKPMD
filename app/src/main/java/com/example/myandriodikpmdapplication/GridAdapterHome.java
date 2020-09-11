@@ -34,7 +34,7 @@ public class GridAdapterHome extends BaseAdapter {
     public int getCount() {
 
 
-        if (docs == null){
+        if (docs == null) {
             return 0;
         }
 
@@ -43,7 +43,6 @@ public class GridAdapterHome extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
-
 
 
         return docs.get(i);

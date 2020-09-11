@@ -57,10 +57,9 @@ public class HomeViewModel extends ViewModel {
 
                 }
 
-                if (collectionOfComics !=null) {
+                if (collectionOfComics != null) {
 
                     Data.docs = collectionOfComics.getResponse().getDocs();
-
 
 
                 }
@@ -72,7 +71,7 @@ public class HomeViewModel extends ViewModel {
         try {
             thread.join();
         } catch (InterruptedException e) {
-           // System.out.println(" idiot ");
+            // System.out.println(" idiot ");
 
 
         }

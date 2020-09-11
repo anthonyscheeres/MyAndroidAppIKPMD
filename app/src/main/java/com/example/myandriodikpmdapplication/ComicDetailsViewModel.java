@@ -17,7 +17,7 @@ public class ComicDetailsViewModel extends ViewModel {
     public ComicDetailsViewModel() {
 
 
-        if (Data.detailsComic ==null){
+        if (Data.detailsComic == null) {
             return;
         }
 
@@ -27,8 +27,6 @@ public class ComicDetailsViewModel extends ViewModel {
         Http http = new HttpService();
 
         Archive archive = new ArchiveOrgUrlService();
-
-
 
 
         Comic comic = Data.detailsComic;

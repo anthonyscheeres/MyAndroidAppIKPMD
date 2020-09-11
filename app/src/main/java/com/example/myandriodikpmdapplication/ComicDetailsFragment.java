@@ -1,16 +1,14 @@
 package com.example.myandriodikpmdapplication;
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.models.Data;
@@ -33,7 +31,6 @@ public class ComicDetailsFragment extends Fragment {
         return inflater.inflate(R.layout.comic_details_fragment, container, false);
 
 
-
     }
 
     @Override
@@ -41,7 +38,6 @@ public class ComicDetailsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(ComicDetailsViewModel.class);
         // TODO: Use the ViewModel
-
 
 
     }

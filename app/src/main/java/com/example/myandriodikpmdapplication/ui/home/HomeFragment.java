@@ -1,6 +1,5 @@
 package com.example.myandriodikpmdapplication.ui.home;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myandriodikpmdapplication.GridAdapterHome;
 import com.example.myandriodikpmdapplication.R;
-import com.example.myandriodikpmdapplication.models.ArchiveManga;
 import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.models.Data;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
@@ -54,13 +52,11 @@ public class HomeFragment extends Fragment {
                 ArrayList<Comic> comics = Data.docs;
 
 
-
-
-                if (comics ==null){
+                if (comics == null) {
                     return;
                 }
 
-                 Data.detailsComic = comics.get(position);
+                Data.detailsComic = comics.get(position);
 
             }
         });
@@ -68,8 +64,6 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
-
-
 
 
 }
