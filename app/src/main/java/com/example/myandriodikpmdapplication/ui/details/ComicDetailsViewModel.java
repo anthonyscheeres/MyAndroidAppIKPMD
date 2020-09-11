@@ -39,6 +39,8 @@ public class ComicDetailsViewModel extends ViewModel {
 
         } catch (Exception e) {
 
+            
+
         }
 
 DataHolder.detailsComic.setMetadata(metadata);
