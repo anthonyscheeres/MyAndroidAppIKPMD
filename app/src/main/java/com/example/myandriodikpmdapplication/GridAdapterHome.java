@@ -61,6 +61,9 @@ public class GridAdapterHome extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
+
+        System.out.println(" idiot 2");
+
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (view == null) {

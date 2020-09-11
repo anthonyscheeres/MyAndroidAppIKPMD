@@ -48,17 +48,20 @@ public class HomeViewModel extends ViewModel {
                 ArchiveManga collectionOfComics = null;
                 try {
 
-
                     //webcomicuniverse || manga_library
                     collectionOfComics = archive.search("webcomicuniverse", http);
 
+
                 } catch (Exception e) {
+
 
                 }
 
                 if (collectionOfComics !=null) {
 
                     Data.docs = collectionOfComics.getResponse().getDocs();
+
+
 
                 }
             }
@@ -69,6 +72,8 @@ public class HomeViewModel extends ViewModel {
         try {
             thread.join();
         } catch (InterruptedException e) {
+           // System.out.println(" idiot ");
+
 
         }
 

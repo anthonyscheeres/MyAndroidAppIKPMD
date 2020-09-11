@@ -53,6 +53,9 @@ public class HomeFragment extends Fragment {
 
                 ArrayList<Comic> comics = Data.docs;
 
+
+
+
                 if (comics ==null){
                     return;
                 }

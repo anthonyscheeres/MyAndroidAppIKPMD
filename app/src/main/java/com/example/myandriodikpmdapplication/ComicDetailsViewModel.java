@@ -16,11 +16,20 @@ public class ComicDetailsViewModel extends ViewModel {
 
     public ComicDetailsViewModel() {
 
+
+        if (Data.detailsComic ==null){
+            return;
+        }
+
+
         ComicController controller = new ComicController();
 
         Http http = new HttpService();
 
         Archive archive = new ArchiveOrgUrlService();
+
+
+
 
         Comic comic = Data.detailsComic;
 
