@@ -44,15 +44,16 @@ public class GridAdapterHome extends BaseAdapter {
     @Override
     public Object getItem(int i) {
 
+        if (docs ==null){
+            return 0;
+        }
 
         return docs.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-
-
-        return 0;
+        return docs.get(i).getIdentifier().hashCode();
     }
 
 
@@ -61,7 +62,7 @@ public class GridAdapterHome extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
 
 
-        System.out.println(" idiot 2");
+        //System.out.println(" idiot 2");
 
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 

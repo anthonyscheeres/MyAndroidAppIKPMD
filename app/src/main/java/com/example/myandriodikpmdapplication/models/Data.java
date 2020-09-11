@@ -9,4 +9,5 @@ public class Data {
 
     public static Comic detailsComic;
 
+    public static String pdfUrl;
 }

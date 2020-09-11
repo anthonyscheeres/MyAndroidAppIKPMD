@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;
-import com.example.myandriodikpmdapplication.models.ArchiveManga;
+import com.example.myandriodikpmdapplication.models.ArchiveSearch;
 import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.models.Data;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
@@ -45,7 +45,7 @@ public class HomeViewModel extends ViewModel {
             public void run() {
 
 
-                ArchiveManga collectionOfComics = null;
+                ArchiveSearch collectionOfComics = null;
                 try {
 
                     //webcomicuniverse || manga_library

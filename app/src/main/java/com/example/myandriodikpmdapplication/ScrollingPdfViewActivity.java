@@ -1,14 +1,15 @@
 package com.example.myandriodikpmdapplication;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.myandriodikpmdapplication.interfaces.Http;
+import com.example.myandriodikpmdapplication.services.HttpService;
+import com.github.barteksc.pdfviewer.PDFView;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class ScrollingPdfViewActivity extends AppCompatActivity {
 
@@ -16,18 +17,26 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling_pdf_view);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        toolBarLayout.setTitle(getTitle());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        Http http = new HttpService();
+
+        PDFView pdfView;
+
+        pdfView = findViewById(R.id.pdfView);
+
+        String url = null;
+
+        InputStream pdf = null;
+
+        try {
+            pdf = http.download(url);
+        } catch (IOException e) {
+
+
+        }
+
+
+        pdfView.fromStream(pdf);
+
     }
 }

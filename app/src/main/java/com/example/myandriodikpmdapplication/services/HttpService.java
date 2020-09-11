@@ -7,7 +7,10 @@ import androidx.annotation.RequiresApi;
 
 import com.example.myandriodikpmdapplication.interfaces.Http;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -20,6 +23,33 @@ import java.nio.charset.StandardCharsets;
 public class HttpService implements Http {
 
     private final String USER_AGENT = "Mozilla/5.0";
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public BufferedInputStream download(String url) throws IOException {
+
+        String[] bits = url.split("/");
+        String lastOne = bits[bits.length - 1];
+
+        try (BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());
+
+             FileOutputStream fileOutputStream = new FileOutputStream(lastOne)) {
+            byte[] dataBuffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
+                fileOutputStream.write(dataBuffer, 0, bytesRead);
+            }
+
+            return in;
+
+        } catch (IOException e) {
+            // handle exception
+        }
+
+
+        throw new IOException();
+
+    }
 
 
     /**
