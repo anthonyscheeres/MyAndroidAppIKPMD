@@ -12,19 +12,19 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 
 import com.example.myandriodikpmdapplication.interfaces.Archive;
+import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.services.DownloadImageService;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class GridAdapterHome extends BaseAdapter {
 
     Context context;
     Archive archive;
-    ArrayList<Object> docs;
+    ArrayList<Comic> docs;
     private LayoutInflater layoutInflater;
 
-    public GridAdapterHome(Context context, Archive archive, ArrayList<Object> docs) {
+    public GridAdapterHome(Context context, Archive archive, ArrayList<Comic> docs) {
         this.context = context;
         this.archive = archive;
         this.docs = docs;
@@ -42,7 +42,7 @@ public class GridAdapterHome extends BaseAdapter {
     @Override
     public Object getItem(int i) {
 
-        System.out.println("idiotss" +docs.size());
+        System.out.println("idiotss" + docs.size());
 
 
         return docs.get(i);
@@ -52,7 +52,6 @@ public class GridAdapterHome extends BaseAdapter {
     public long getItemId(int i) {
 
 
-
         return 0;
     }
 
@@ -60,59 +59,31 @@ public class GridAdapterHome extends BaseAdapter {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        System.out.println("idiotss" +docs.size());
-
-        System.out.println("idiot");
 
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-
-        System.out.println("idiot");
 
         if (view == null) {
             view = new View(context);
 
             view = layoutInflater.inflate(R.layout.grid_layout, null);
 
-            ImageView imageView2 = view.findViewById(R.id.textView);
-
-            TextView textView2 = view.findViewById(R.id.textView);
-
-            Object doc = docs.get(i);
-
-
-            Class<?> clazz = doc.getClass();
-            Field field = null; //Note, this can throw an exception if the field doesn't exist.
-
-            try {
-
-
-                field = clazz.getField("title");
-
-                Object title = field.getChar(doc);
-
-                field = clazz.getField("identifier");
-
-                Object identifier = field.getChar(doc);
-
-                String url = archive.image(identifier.toString());
-
-
-                System.out.println("idiot" + url);
-
-                new DownloadImageService(imageView2)
-                        .execute(url);
-
-
-                textView2.setText(title.toString());
-
-
-            } catch (NoSuchFieldException | IllegalAccessException e) {
-
-            }
-
-
         }
+
+
+        ImageView imageView2 = view.findViewById(R.id.imageView2);
+
+        TextView textView2 = view.findViewById(R.id.textView);
+
+        Comic doc = docs.get(i);
+
+
+        String url = archive.image(doc.getIdentifier());
+
+
+        new DownloadImageService(imageView2)
+                .execute(url);
+
+        textView2.setText(doc.getTitle());
 
 
         return view;

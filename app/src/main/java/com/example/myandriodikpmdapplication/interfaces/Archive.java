@@ -5,7 +5,7 @@ import com.example.myandriodikpmdapplication.models.ArchiveMetadata;
 
 public interface Archive {
 
-    ArchiveManga search(String search, Http http) throws Exception ;
+    ArchiveManga search(String search, Http http) throws Exception;
 
     ArchiveMetadata metadata(Http http, String identifier) throws Exception;
 
