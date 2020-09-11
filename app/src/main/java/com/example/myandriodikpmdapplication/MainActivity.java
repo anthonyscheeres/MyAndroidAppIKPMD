@@ -1,10 +1,8 @@
 package com.example.myandriodikpmdapplication;
 
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,13 +20,13 @@ import com.example.myandriodikpmdapplication.interfaces.BitmapI;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.interfaces.Identicon;
 import com.example.myandriodikpmdapplication.interfaces.Token;
+import com.example.myandriodikpmdapplication.models.Data;
 import com.example.myandriodikpmdapplication.models.User;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.services.BitmapService;
 import com.example.myandriodikpmdapplication.services.HttpService;
 import com.example.myandriodikpmdapplication.services.KweloIdenticon;
 import com.example.myandriodikpmdapplication.services.UserIDService;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
@@ -84,13 +82,14 @@ public class MainActivity extends AppCompatActivity {
                 //Get data object from database and map to it's model
                 User userData = dataSnapshot.getValue(User.class);
 
-                Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
+                Data.user = userData;
 
+                //Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
 
 
                 // update UI
-                imageView = (ImageView) findViewById(R.id.f);
-                textView = (TextView) findViewById(R.id.f2);
+                //imageView = (ImageView) findViewById(R.id.f);
+                //textView = (TextView) findViewById(R.id.f2);
                 //textView.setText(userData.getUserID());
                 //imageView.setImageBitmap(decodedImage);
             }
@@ -122,8 +121,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
         Snackbar.make(navigationView, "Welcome ", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-
-
 
 
     }

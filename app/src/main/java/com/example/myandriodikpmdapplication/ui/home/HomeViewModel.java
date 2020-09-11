@@ -21,12 +21,9 @@ public class HomeViewModel extends ViewModel {
     public HomeViewModel() {
 
 
-
         getData();
 
         docs = Data.docs;
-
-
 
 
     }
@@ -36,6 +33,10 @@ public class HomeViewModel extends ViewModel {
         Http http = new HttpService();
 
         Archive archive = new ArchiveOrgUrlService();
+
+        if (Data.docs != null) {
+            return;
+        }
 
 
         Thread thread = new Thread() {

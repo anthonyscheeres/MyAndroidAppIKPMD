@@ -10,12 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.services.DownloadImageService;
-import com.example.myandriodikpmdapplication.ui.home.HomeViewModel;
 
 import java.util.ArrayList;
 
