@@ -10,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myandriodikpmdapplication.interfaces.Archive;
+import com.example.myandriodikpmdapplication.interfaces.GridViewHolder;
 import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.services.DownloadImageService;
 
@@ -42,6 +44,11 @@ public class GridAdapterHome extends BaseAdapter {
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
     public Object getItem(int i) {
 
         if (docs == null) {
@@ -65,18 +72,27 @@ public class GridAdapterHome extends BaseAdapter {
         //System.out.println(" idiot 2");
 
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+        GridViewHolder holder;
         if (view == null) {
             view = new View(context);
 
+           holder = new GridViewHolder(view);
+
             view = layoutInflater.inflate(R.layout.grid_layout, null);
 
+            holder.image= view.findViewById(R.id.imageView2);
+
+            holder.text = view.findViewById(R.id.textView);
+
+            view.setTag(holder);
+        }
+        else{
+            holder= (GridViewHolder) view.getTag();
         }
 
+        holder.image = view.findViewById(R.id.imageView2);
 
-        ImageView imageView2 = view.findViewById(R.id.imageView2);
-
-        TextView textView2 = view.findViewById(R.id.textView);
+        holder.text = view.findViewById(R.id.textView);
 
         Comic doc = docs.get(i);
 
@@ -84,7 +100,7 @@ public class GridAdapterHome extends BaseAdapter {
         String url = archive.image(doc.getIdentifier());
 
 
-        new DownloadImageService(imageView2, doc.getTitle(), textView2)
+        new DownloadImageService(holder.image, doc.getTitle(), holder.text)
                 .execute(url);
 
 

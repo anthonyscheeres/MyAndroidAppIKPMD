@@ -15,7 +15,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myandriodikpmdapplication.ComicDetailsFragment;
+import com.example.myandriodikpmdapplication.DetailsActivity;
 import com.example.myandriodikpmdapplication.GridAdapterHome;
+import com.example.myandriodikpmdapplication.MainActivity;
 import com.example.myandriodikpmdapplication.R;
 import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.models.Data;
@@ -61,7 +63,7 @@ public class HomeFragment extends Fragment {
                 }
 
                 Data.detailsComic = comics.get(position);
-                
+                startActivity(new Intent(getContext(), DetailsActivity.class));
 
             }
         });

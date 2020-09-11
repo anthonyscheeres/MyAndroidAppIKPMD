@@ -31,11 +31,16 @@ public class ComicDetailsViewModel extends ViewModel {
 
         Comic comic = Data.detailsComic;
 
+       // System.out.println(" diot ");
+
+
         try {
             controller.addMetadata(comic, archive, http);
         } catch (Exception e) {
 
         }
+
+
 
 
     }
