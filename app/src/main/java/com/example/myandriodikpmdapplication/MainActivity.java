@@ -20,7 +20,7 @@ import com.example.myandriodikpmdapplication.interfaces.BitmapI;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.interfaces.Identicon;
 import com.example.myandriodikpmdapplication.interfaces.Token;
-import com.example.myandriodikpmdapplication.models.Data;
+import com.example.myandriodikpmdapplication.holders.Data;
 import com.example.myandriodikpmdapplication.models.User;
 import com.example.myandriodikpmdapplication.services.BitmapService;
 import com.example.myandriodikpmdapplication.services.HttpService;

@@ -1,4 +1,4 @@
-package com.example.myandriodikpmdapplication.interfaces;
+package com.example.myandriodikpmdapplication.holders;
 
 import android.view.View;
 import android.widget.ImageView;

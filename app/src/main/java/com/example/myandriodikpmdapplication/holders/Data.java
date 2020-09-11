@@ -1,4 +1,7 @@
-package com.example.myandriodikpmdapplication.models;
+package com.example.myandriodikpmdapplication.holders;
+
+import com.example.myandriodikpmdapplication.models.Comic;
+import com.example.myandriodikpmdapplication.models.User;
 
 import java.util.ArrayList;
 

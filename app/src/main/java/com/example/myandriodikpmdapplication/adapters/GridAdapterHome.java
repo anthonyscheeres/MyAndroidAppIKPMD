@@ -1,4 +1,4 @@
-package com.example.myandriodikpmdapplication;
+package com.example.myandriodikpmdapplication.adapters;
 
 import android.content.Context;
 import android.os.Build;
@@ -6,14 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myandriodikpmdapplication.R;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
-import com.example.myandriodikpmdapplication.interfaces.GridViewHolder;
+import com.example.myandriodikpmdapplication.holders.GridViewHolder;
 import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.services.DownloadImageService;
 
@@ -41,11 +39,6 @@ public class GridAdapterHome extends BaseAdapter {
         }
 
         return docs.size();
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        return position;
     }
 
     @Override

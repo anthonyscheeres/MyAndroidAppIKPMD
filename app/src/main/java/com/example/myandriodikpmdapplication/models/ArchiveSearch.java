@@ -5,28 +5,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ArchiveSearch {
-    ResponseHeader ResponseHeaderObject;
-    Response ResponseObject;
+    ResponseHeader ResponseHeader;
+    Response Response;
 
     public ArchiveSearch() {
     }
 // Getter Methods
 
-    public ResponseHeader getResponseHeader() {
-        return ResponseHeaderObject;
+    public com.example.myandriodikpmdapplication.models.ResponseHeader getResponseHeader() {
+        return ResponseHeader;
     }
 
-    public void setResponseHeader(ResponseHeader responseHeaderObject) {
-        this.ResponseHeaderObject = responseHeaderObject;
-    }
-
-    // Setter Methods
-
-    public Response getResponse() {
-        return ResponseObject;
-    }
-
-    public void setResponse(Response responseObject) {
-        this.ResponseObject = responseObject;
+    public com.example.myandriodikpmdapplication.models.Response getResponse() {
+        return Response;
     }
 }
