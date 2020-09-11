@@ -14,7 +14,12 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myandriodikpmdapplication.GridAdapterHome;
 import com.example.myandriodikpmdapplication.R;
+import com.example.myandriodikpmdapplication.models.ArchiveManga;
+import com.example.myandriodikpmdapplication.models.Comic;
+import com.example.myandriodikpmdapplication.models.Data;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
@@ -44,6 +49,15 @@ public class HomeFragment extends Fragment {
                                     int position, long id) {
 
                 //switch view here to go to chapter explorer
+
+
+                ArrayList<Comic> comics = Data.docs;
+
+                if (comics ==null){
+                    return;
+                }
+
+                 Data.detailsComic = comics.get(position);
 
             }
         });

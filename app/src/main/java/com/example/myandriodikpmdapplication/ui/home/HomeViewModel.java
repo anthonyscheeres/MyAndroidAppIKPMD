@@ -56,10 +56,11 @@ public class HomeViewModel extends ViewModel {
 
                 }
 
+                if (collectionOfComics !=null) {
 
-                Data.docs = collectionOfComics.getResponse().getDocs();
+                    Data.docs = collectionOfComics.getResponse().getDocs();
 
-
+                }
             }
         };
 

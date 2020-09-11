@@ -34,7 +34,9 @@ public class GridAdapterHome extends BaseAdapter {
     public int getCount() {
 
 
-        //System.out.println("idiot"+docs.size());
+        if (docs == null){
+            return 0;
+        }
 
         return docs.size();
     }
@@ -42,7 +44,6 @@ public class GridAdapterHome extends BaseAdapter {
     @Override
     public Object getItem(int i) {
 
-        System.out.println("idiotss" + docs.size());
 
 
         return docs.get(i);

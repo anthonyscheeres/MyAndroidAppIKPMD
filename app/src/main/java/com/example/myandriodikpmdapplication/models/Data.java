@@ -7,4 +7,6 @@ public class Data {
 
     public static User user;
 
+    public static Comic detailsComic;
+
 }

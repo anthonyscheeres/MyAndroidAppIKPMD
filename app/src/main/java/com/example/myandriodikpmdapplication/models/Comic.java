@@ -13,10 +13,20 @@ public class Comic {
     //we need this for an image
     private String identifier;
 
+    private ArchiveMetadata metadata;
+
 
     public Comic() {
     }
 
+
+    public ArchiveMetadata getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(ArchiveMetadata metadata) {
+        this.metadata = metadata;
+    }
 
     public String getDescription() {
         return description;
