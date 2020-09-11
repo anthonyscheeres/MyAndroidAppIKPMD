@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
 
 
-              
+
                 // update UI
                 imageView = (ImageView) findViewById(R.id.f);
                 textView = (TextView) findViewById(R.id.f2);

@@ -20,14 +20,14 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
 
-        System.out.println("idiot " + Data.docs);
+
 
         getData();
 
         docs = Data.docs;
 
 
-        System.out.println("idiot " + Data.docs);
+
 
     }
 
@@ -46,6 +46,9 @@ public class HomeViewModel extends ViewModel {
 
                 ArchiveManga collectionOfComics = null;
                 try {
+
+
+                    //webcomicuniverse || manga_library
                     collectionOfComics = archive.search("webcomicuniverse", http);
 
                 } catch (Exception e) {
