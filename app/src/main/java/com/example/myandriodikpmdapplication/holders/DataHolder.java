@@ -1,5 +1,6 @@
 package com.example.myandriodikpmdapplication.holders;
 
+import com.example.myandriodikpmdapplication.models.ArchiveMetadata;
 import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.models.User;
 
@@ -11,6 +12,8 @@ public class DataHolder {
     public static User user;
 
     public static Comic detailsComic;
+
+    public static ArchiveMetadata metadata;
 
     public static String pdfUrl;
 }

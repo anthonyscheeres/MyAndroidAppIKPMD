@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".DetailsActivity">
 
-
     <fragment
         android:id="@+id/fragment"
-        android:name="com.example.myandriodikpmdapplication.ui.details.ComicDetailsFragment"
-        android:layout_width="416dp"
-        android:layout_height="724dp"
+        android:name="com.example.myandriodikpmdapplication.ui.details.ListFilesItemFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

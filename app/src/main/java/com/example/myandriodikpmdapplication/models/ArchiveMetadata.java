@@ -8,8 +8,8 @@ import java.util.ArrayList;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ArchiveMetadata {
 
-    ArrayList<File> files = new ArrayList<File>();
-    Metadata MetadataObject;
+    private ArrayList<File> files = new ArrayList<File>();
+    private Metadata metadata;
 
     private String d1;
     private String d2;
@@ -24,18 +24,16 @@ public class ArchiveMetadata {
         return files;
     }
 
-    //Setters
     public void setFiles(ArrayList<File> files) {
         this.files = files;
     }
 
-    //Getters
-    public Metadata getMetadataObject() {
-        return MetadataObject;
+    public Metadata getMetadata() {
+        return metadata;
     }
 
-    public void setMetadataObject(Metadata metadataObject) {
-        MetadataObject = metadataObject;
+    public void setMetadata(Metadata metadata) {
+        this.metadata = metadata;
     }
 
     public String getD1() {
