@@ -1,6 +1,11 @@
 package com.example.myandriodikpmdapplication.holders;
 
+import android.content.Context;
+import android.content.Intent;
+import android.view.View;
+
 import com.example.myandriodikpmdapplication.models.Comic;
+import com.example.myandriodikpmdapplication.ui.home.DetailsActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;

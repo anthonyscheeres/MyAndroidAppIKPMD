@@ -1,10 +1,11 @@
-package com.example.myandriodikpmdapplication.adapters;
+package com.example.myandriodikpmdapplication.holders;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 
 
+import com.example.myandriodikpmdapplication.adapters.MyComicRecyclerViewAdapter;
 import com.example.myandriodikpmdapplication.models.Comic;
 
 import java.io.InputStream;

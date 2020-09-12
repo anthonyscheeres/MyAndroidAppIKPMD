@@ -2,6 +2,7 @@ package com.example.myandriodikpmdapplication.adapters;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myandriodikpmdapplication.R;
+import com.example.myandriodikpmdapplication.holders.DataHolder;
+import com.example.myandriodikpmdapplication.holders.DownloadImageForHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
+import com.example.myandriodikpmdapplication.ui.home.DetailsActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +36,8 @@ public class MyComicRecyclerViewAdapter extends RecyclerView.Adapter<MyComicRecy
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_item, parent, false);
+
+
         return new ViewHolder(view);
     }
 
@@ -46,6 +53,28 @@ public class MyComicRecyclerViewAdapter extends RecyclerView.Adapter<MyComicRecy
         new DownloadImageForHolder(holder, mValues.get(position).getTitle(), mValues.get(position)
         )
                 .execute(url);
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<Comic> comics = DataHolder.docs;
+
+
+                if (comics == null) {
+                    return;
+                }
+
+                DataHolder.detailsComic = comics.get(position);
+
+
+                v.getContext().startActivity(new Intent(v.getContext(), DetailsActivity.class));
+
+            } });
+
+
+
+
 
     }
 

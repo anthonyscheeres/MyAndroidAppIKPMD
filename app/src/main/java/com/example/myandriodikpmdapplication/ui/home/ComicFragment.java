@@ -1,6 +1,7 @@
 package com.example.myandriodikpmdapplication.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.example.myandriodikpmdapplication.adapters.MyComicRecyclerViewAdapter;
 import com.example.myandriodikpmdapplication.R;
@@ -19,8 +22,11 @@ import com.example.myandriodikpmdapplication.holders.DataHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.models.ArchiveSearch;
+import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.services.HttpService;
+
+import java.util.ArrayList;
 
 /**
  * A fragment representing a list of Items.
@@ -110,7 +116,38 @@ public class ComicFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             recyclerView.setAdapter(new MyComicRecyclerViewAdapter(ComicHolder.ITEMS));
+
+
+
         }
+
+
+
+/*
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                //switch view here to go to chapter explorer
+
+
+                ArrayList<Comic> comics = DataHolder.docs;
+
+
+                if (comics == null) {
+                    return;
+                }
+
+                DataHolder.detailsComic = comics.get(position);
+                startActivity(new Intent(getContext(), DetailsActivity.class));
+
+            }
+        });
+*/
+
 
 
 
