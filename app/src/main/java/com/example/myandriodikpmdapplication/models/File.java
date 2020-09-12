@@ -20,28 +20,28 @@ public class File {
         return name;
     }
 
-    public String getSource() {
-        return source;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public String getFormat() {
-        return format;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSource() {
+        return source;
     }
 
     public void setSource(String source) {
         this.source = source;
     }
 
+    public String getSize() {
+        return size;
+    }
+
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public String getFormat() {
+        return format;
     }
 
     public void setFormat(String format) {

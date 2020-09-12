@@ -39,16 +39,24 @@ public class ComicDetailsFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.comic_details_fragment, container, false);
 
-        ListView gridview2;
+        ListView listView;
 
-        gridview2 = root.findViewById(R.id.listView);
+        listView = root.findViewById(R.id.listView);
 
         ArrayList<File> comics = null;
 
-        if (DataHolder.detailsComic!=null){
+        if (DataHolder.detailsComic != null) {
 
 
-            comics = DataHolder.detailsComic.getMetadata().getFiles();
+            try {
+
+                comics = DataHolder.detailsComic.getMetadata().getFiles();
+
+            }
+            catch(Error e){
+
+
+            }
 
         }
 
@@ -56,10 +64,10 @@ public class ComicDetailsFragment extends Fragment {
         ListAdapterDetails gridAdapterHome = new ListAdapterDetails(getActivity(), comics);
 
 
-        gridview2.setAdapter(gridAdapterHome);
+        listView.setAdapter(gridAdapterHome);
 
 
-        gridview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,

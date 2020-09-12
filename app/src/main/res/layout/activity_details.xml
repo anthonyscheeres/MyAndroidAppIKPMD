@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".DetailsActivity">
 
+
     <fragment
         android:id="@+id/fragment"
         android:name="com.example.myandriodikpmdapplication.ui.details.ComicDetailsFragment"

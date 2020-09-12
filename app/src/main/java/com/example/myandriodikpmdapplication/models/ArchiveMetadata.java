@@ -24,48 +24,46 @@ public class ArchiveMetadata {
         return files;
     }
 
+    //Setters
+    public void setFiles(ArrayList<File> files) {
+        this.files = files;
+    }
 
     //Getters
     public Metadata getMetadataObject() {
         return MetadataObject;
     }
 
-    public String getD1() {
-        return d1;
-    }
-
-    public String getD2() {
-        return d2;
-    }
-
-    public String getDir() {
-        return dir;
-    }
-
-    public String getServer() {
-        return server;
-    }
-
-
-    //Setters
-    public void setFiles(ArrayList<File> files) {
-        this.files = files;
-    }
-
     public void setMetadataObject(Metadata metadataObject) {
         MetadataObject = metadataObject;
+    }
+
+    public String getD1() {
+        return d1;
     }
 
     public void setD1(String d1) {
         this.d1 = d1;
     }
 
+    public String getD2() {
+        return d2;
+    }
+
     public void setD2(String d2) {
         this.d2 = d2;
     }
 
+    public String getDir() {
+        return dir;
+    }
+
     public void setDir(String dir) {
         this.dir = dir;
+    }
+
+    public String getServer() {
+        return server;
     }
 
     public void setServer(String server) {
