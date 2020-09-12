@@ -1,9 +1,10 @@
-package com.example.myandriodikpmdapplication;
+package com.example.myandriodikpmdapplication.ui.home;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myandriodikpmdapplication.R;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.services.HttpService;
 import com.github.barteksc.pdfviewer.PDFView;

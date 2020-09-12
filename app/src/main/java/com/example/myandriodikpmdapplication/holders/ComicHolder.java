@@ -1,6 +1,6 @@
-package com.example.myandriodikpmdapplication.dummy;
+package com.example.myandriodikpmdapplication.holders;
 
-import com.example.myandriodikpmdapplication.models.File;
+import com.example.myandriodikpmdapplication.models.Comic;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,12 +13,12 @@ import java.util.Map;
  * <p>
  * TODO: Replace all uses of this class before publishing your app.
  */
-public class FilesHolder {
+public class ComicHolder {
 
     /**
      * An array of sample (dummy) items.
      */
-    public static List<File> ITEMS = new ArrayList<File>();
+    public static List<Comic> ITEMS = new ArrayList<Comic>();
 
 
     private static String makeDetails(int position) {
@@ -30,4 +30,4 @@ public class FilesHolder {
         return builder.toString();
     }
 
-}
+    }

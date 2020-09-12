@@ -16,9 +16,9 @@
             android:value="@integer/google_play_services_version" />
 
 
-        <activity android:name=".DetailsActivity"></activity>
+        <activity android:name=".ui.home.DetailsActivity"></activity>
         <activity
-            android:name=".ScrollingPdfViewActivity"
+            android:name=".ui.home.ScrollingPdfViewActivity"
             android:label="@string/title_activity_scrolling_pdf_view"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

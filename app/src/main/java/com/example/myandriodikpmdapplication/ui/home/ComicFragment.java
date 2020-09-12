@@ -1,4 +1,4 @@
-package com.example.myandriodikpmdapplication.ui.details;
+package com.example.myandriodikpmdapplication.ui.home;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,20 +12,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.myandriodikpmdapplication.adapters.MyFilesRecyclerViewAdapter;
+import com.example.myandriodikpmdapplication.adapters.MyComicRecyclerViewAdapter;
 import com.example.myandriodikpmdapplication.R;
-import com.example.myandriodikpmdapplication.holders.FilesHolder;
+import com.example.myandriodikpmdapplication.holders.ComicHolder;
 import com.example.myandriodikpmdapplication.holders.DataHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;
-import com.example.myandriodikpmdapplication.models.ArchiveMetadata;
+import com.example.myandriodikpmdapplication.models.ArchiveSearch;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.services.HttpService;
 
 /**
  * A fragment representing a list of Items.
  */
-public class ListFilesItemFragment extends Fragment {
+public class ComicFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -36,13 +36,13 @@ public class ListFilesItemFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ListFilesItemFragment() {
+    public ComicFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static ListFilesItemFragment newInstance(int columnCount) {
-        ListFilesItemFragment fragment = new ListFilesItemFragment();
+    public static ComicFragment newInstance(int columnCount) {
+        ComicFragment fragment = new ComicFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -61,39 +61,28 @@ public class ListFilesItemFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list_files_item_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_item_list, container, false);
+
 
 
         Http http = new HttpService();
 
         Archive archive = new ArchiveOrgUrlService();
 
-
-
-
-
-
         Thread thread = new Thread() {
 
 
             public void run() {
-
-                ArchiveMetadata metadata = null;
+                ArchiveSearch collectionOfComics = null;
                 try {
-
-
-                    metadata = archive.metadata(http, DataHolder.detailsComic.getIdentifier());
-
-                    DataHolder.metadata = metadata;
-
+                    //webcomicuniverse || manga_library
+                    collectionOfComics = archive.search("webcomicuniverse", http);
                 } catch (Exception e) {
-
-
-
                 }
 
-
-
+                if (collectionOfComics != null) {
+                    DataHolder.docs = collectionOfComics.getResponse().getDocs();
+                }
             }
         };
 
@@ -109,13 +98,7 @@ public class ListFilesItemFragment extends Fragment {
 
 
 
-
-        FilesHolder.ITEMS = DataHolder.metadata.getFiles();
-
-       // DataHolder.detailsComic.setMetadata(metadata);
-
-
-
+        ComicHolder.ITEMS = DataHolder.docs;
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -126,8 +109,12 @@ public class ListFilesItemFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyFilesRecyclerViewAdapter(FilesHolder.ITEMS));
+            recyclerView.setAdapter(new MyComicRecyclerViewAdapter(ComicHolder.ITEMS));
         }
+
+
+
+
         return view;
     }
 }
