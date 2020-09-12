@@ -14,13 +14,11 @@ import android.view.ViewGroup;
 
 import com.example.myandriodikpmdapplication.adapters.MyFilesRecyclerViewAdapter;
 import com.example.myandriodikpmdapplication.R;
-import com.example.myandriodikpmdapplication.dummy.DummyContent;
+import com.example.myandriodikpmdapplication.dummy.FilesHolder;
 import com.example.myandriodikpmdapplication.holders.DataHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.models.ArchiveMetadata;
-import com.example.myandriodikpmdapplication.models.ArchiveSearch;
-import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.services.HttpService;
 
@@ -112,7 +110,7 @@ public class ListFilesItemFragment extends Fragment {
 
 
 
-        DummyContent.ITEMS = DataHolder.metadata.getFiles();
+        FilesHolder.ITEMS = DataHolder.metadata.getFiles();
 
        // DataHolder.detailsComic.setMetadata(metadata);
 
@@ -128,7 +126,7 @@ public class ListFilesItemFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyFilesRecyclerViewAdapter(DummyContent.ITEMS));
+            recyclerView.setAdapter(new MyFilesRecyclerViewAdapter(FilesHolder.ITEMS));
         }
         return view;
     }
