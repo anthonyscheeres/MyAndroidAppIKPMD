@@ -12,8 +12,14 @@ import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.services.HttpService;
 import com.github.barteksc.pdfviewer.PDFView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 
 public class ScrollingPdfViewActivity extends AppCompatActivity {
 
@@ -35,11 +41,15 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
 
                 try {
 
-                    InputStream pdf = http.download(DataHolder.pdfUrl);
+                    ByteArrayOutputStream pdf = http.download(new URL(DataHolder.pdfUrl));
                     DataHolder.pdf = pdf;
+
+
+
 
                 } catch (IOException e) {
 
+                    e.printStackTrace();
 
                 }
 
@@ -61,15 +71,12 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
 
         PDFView pdfView = findViewById(R.id.pdfView);
 
-        System.out.println("idiot " + DataHolder.pdfUrl);
-
-        pdfView.fromStream(DataHolder.pdf)
+        pdfView.fromBytes(DataHolder.pdf.toByteArray())
                 .enableSwipe(true)
                 .swipeHorizontal(true)
                 .enableDoubletap(true)
                 .defaultPage(0)
                 .enableAnnotationRendering(false)
-                .password(null)
                 .scrollHandle(null)
                 .enableAntialiasing(true)
                 .load();

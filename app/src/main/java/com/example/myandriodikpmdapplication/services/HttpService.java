@@ -7,10 +7,10 @@ import androidx.annotation.RequiresApi;
 
 import com.example.myandriodikpmdapplication.interfaces.Http;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.FileOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -26,29 +26,30 @@ public class HttpService implements Http {
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public BufferedInputStream download(String url) throws IOException {
+    public ByteArrayOutputStream download(URL url) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        InputStream is = null;
+        try {
+            is = url.openStream ();
+            byte[] byteChunk = new byte[4096]; // Or whatever size you want to read in at a time.
+            int n;
 
-
-        String[] bits = url.split("/");
-        String lastOne = bits[bits.length - 1];
-
-        try (BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());
-
-             FileOutputStream fileOutputStream = new FileOutputStream(lastOne)) {
-            byte[] dataBuffer = new byte[1024];
-            int bytesRead;
-            while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
-                fileOutputStream.write(dataBuffer, 0, bytesRead);
+            while ( (n = is.read(byteChunk)) > 0 ) {
+                baos.write(byteChunk, 0, n);
             }
-
-            return in;
-
-        } catch (IOException e) {
-            // handle exception
         }
+        catch (IOException e) {
+            System.err.printf ("Failed while reading bytes from %s: %s", url.toExternalForm(), e.getMessage());
+            e.printStackTrace ();
+            // Perform any other exception handling that's appropriate.
+        }
+        finally {
+            if (is != null) { is.close(); }
+        }
+        
 
+        return baos;
 
-        throw new IOException();
 
     }
 
