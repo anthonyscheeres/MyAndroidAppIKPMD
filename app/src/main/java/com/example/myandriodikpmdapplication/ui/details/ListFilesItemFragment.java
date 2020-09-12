@@ -2,20 +2,19 @@ package com.example.myandriodikpmdapplication.ui.details;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.example.myandriodikpmdapplication.adapters.MyFilesRecyclerViewAdapter;
 import com.example.myandriodikpmdapplication.R;
-import com.example.myandriodikpmdapplication.holders.FilesHolder;
+import com.example.myandriodikpmdapplication.adapters.MyFilesRecyclerViewAdapter;
 import com.example.myandriodikpmdapplication.holders.DataHolder;
+import com.example.myandriodikpmdapplication.holders.FilesHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.models.ArchiveMetadata;
@@ -69,10 +68,6 @@ public class ListFilesItemFragment extends Fragment {
         Archive archive = new ArchiveOrgUrlService();
 
 
-
-
-
-
         Thread thread = new Thread() {
 
 
@@ -89,9 +84,7 @@ public class ListFilesItemFragment extends Fragment {
                 } catch (Exception e) {
 
 
-
                 }
-
 
 
             }
@@ -108,13 +101,9 @@ public class ListFilesItemFragment extends Fragment {
         }
 
 
-
-
         FilesHolder.ITEMS = DataHolder.metadata.getFiles();
 
-       // DataHolder.detailsComic.setMetadata(metadata);
-
-
+        // DataHolder.detailsComic.setMetadata(metadata);
 
 
         // Set the adapter

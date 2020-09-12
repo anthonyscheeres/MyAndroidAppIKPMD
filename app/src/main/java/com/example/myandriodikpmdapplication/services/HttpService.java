@@ -29,7 +29,6 @@ public class HttpService implements Http {
     public BufferedInputStream download(String url) throws IOException {
 
 
-
         String[] bits = url.split("/");
         String lastOne = bits[bits.length - 1];
 

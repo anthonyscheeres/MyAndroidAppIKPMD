@@ -3,11 +3,10 @@ package com.example.myandriodikpmdapplication.ui.home;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 
 import com.example.myandriodikpmdapplication.R;
 
-public class DetailsActivity extends  AppCompatActivity  {
+public class DetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

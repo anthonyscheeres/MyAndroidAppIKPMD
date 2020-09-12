@@ -1,32 +1,25 @@
 package com.example.myandriodikpmdapplication.ui.home;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
-
-import com.example.myandriodikpmdapplication.adapters.MyComicRecyclerViewAdapter;
 import com.example.myandriodikpmdapplication.R;
+import com.example.myandriodikpmdapplication.adapters.MyComicRecyclerViewAdapter;
 import com.example.myandriodikpmdapplication.holders.ComicHolder;
 import com.example.myandriodikpmdapplication.holders.DataHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.models.ArchiveSearch;
-import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.services.HttpService;
-
-import java.util.ArrayList;
 
 /**
  * A fragment representing a list of Items.
@@ -70,7 +63,6 @@ public class ComicFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_item_list, container, false);
 
 
-
         Http http = new HttpService();
 
         Archive archive = new ArchiveOrgUrlService();
@@ -103,7 +95,6 @@ public class ComicFragment extends Fragment {
         }
 
 
-
         ComicHolder.ITEMS = DataHolder.docs;
 
         // Set the adapter
@@ -116,7 +107,6 @@ public class ComicFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             recyclerView.setAdapter(new MyComicRecyclerViewAdapter(ComicHolder.ITEMS));
-
 
 
         }
@@ -147,9 +137,6 @@ public class ComicFragment extends Fragment {
             }
         });
 */
-
-
-
 
 
         return view;

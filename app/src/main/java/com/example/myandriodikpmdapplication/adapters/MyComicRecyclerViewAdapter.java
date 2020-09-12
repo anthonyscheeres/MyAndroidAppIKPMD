@@ -1,13 +1,13 @@
 package com.example.myandriodikpmdapplication.adapters;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myandriodikpmdapplication.R;
 import com.example.myandriodikpmdapplication.holders.DataHolder;
@@ -70,10 +70,8 @@ public class MyComicRecyclerViewAdapter extends RecyclerView.Adapter<MyComicRecy
 
                 v.getContext().startActivity(new Intent(v.getContext(), DetailsActivity.class));
 
-            } });
-
-
-
+            }
+        });
 
 
     }

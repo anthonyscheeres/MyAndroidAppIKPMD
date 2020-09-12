@@ -1,15 +1,20 @@
 package com.example.myandriodikpmdapplication.adapters;
 
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.myandriodikpmdapplication.R;
-import com.example.myandriodikpmdapplication.models.File;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myandriodikpmdapplication.R;
+import com.example.myandriodikpmdapplication.holders.DataHolder;
+import com.example.myandriodikpmdapplication.models.File;
+import com.example.myandriodikpmdapplication.ui.home.DetailsActivity;
+import com.example.myandriodikpmdapplication.ui.home.ScrollingPdfViewActivity;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,6 +37,25 @@ public class MyFilesRecyclerViewAdapter extends RecyclerView.Adapter<MyFilesRecy
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mContentView.setText(mValues.get(position).getName());
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<File> comics = DataHolder.metadata.getFiles();
+
+
+                if (comics == null) {
+                    return;
+                }
+
+                DataHolder.pdfUrl = comics.get(position).getName();
+                v.getContext().startActivity(new Intent(v.getContext(), ScrollingPdfViewActivity.class));
+
+            }
+        });
+
+
     }
 
     @Override
@@ -50,6 +74,7 @@ public class MyFilesRecyclerViewAdapter extends RecyclerView.Adapter<MyFilesRecy
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.item_number);
             mContentView = (TextView) view.findViewById(R.id.content);
+
         }
 
         @Override
