@@ -29,6 +29,7 @@ public class MyFilesRecyclerViewAdapter extends RecyclerView.Adapter<MyFilesRecy
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_list_files_item, parent, false);
         return new ViewHolder(view);
@@ -36,23 +37,26 @@ public class MyFilesRecyclerViewAdapter extends RecyclerView.Adapter<MyFilesRecy
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mContentView.setText(mValues.get(position).getName());
 
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ArchiveMetadata metadata = DataHolder.metadata;
 
-                Archive archive = new ArchiveOrgUrlService();
+            holder.mItem = mValues.get(position);
+            holder.mContentView.setText(mValues.get(position).getName());
 
-                DataHolder.pdfUrl = archive.file(metadata, metadata.getFiles().get(position).getName());
 
-                v.getContext().startActivity(new Intent(v.getContext(), ScrollingPdfViewActivity.class));
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ArchiveMetadata metadata = DataHolder.metadata;
 
-            }
-        });
+                    Archive archive = new ArchiveOrgUrlService();
+
+                    DataHolder.pdfUrl = archive.file(metadata, metadata.getFiles().get(position).getName());
+
+                    v.getContext().startActivity(new Intent(v.getContext(), ScrollingPdfViewActivity.class));
+
+                }
+            });
 
 
     }
@@ -71,8 +75,8 @@ public class MyFilesRecyclerViewAdapter extends RecyclerView.Adapter<MyFilesRecy
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = view.findViewById(R.id.item_number);
+            mContentView = view.findViewById(R.id.content);
 
         }
 

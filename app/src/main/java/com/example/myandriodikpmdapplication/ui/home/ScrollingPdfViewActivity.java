@@ -13,12 +13,7 @@ import com.example.myandriodikpmdapplication.services.HttpService;
 import com.github.barteksc.pdfviewer.PDFView;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URL;
 
 public class ScrollingPdfViewActivity extends AppCompatActivity {
@@ -43,8 +38,6 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
 
                     ByteArrayOutputStream pdf = http.download(new URL(DataHolder.pdfUrl));
                     DataHolder.pdf = pdf;
-
-
 
 
                 } catch (IOException e) {
