@@ -112,33 +112,6 @@ public class ComicFragment extends Fragment {
         }
 
 
-
-/*
-
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-                //switch view here to go to chapter explorer
-
-
-                ArrayList<Comic> comics = DataHolder.docs;
-
-
-                if (comics == null) {
-                    return;
-                }
-
-                DataHolder.detailsComic = comics.get(position);
-                startActivity(new Intent(getContext(), DetailsActivity.class));
-
-            }
-        });
-*/
-
-
         return view;
     }
 }

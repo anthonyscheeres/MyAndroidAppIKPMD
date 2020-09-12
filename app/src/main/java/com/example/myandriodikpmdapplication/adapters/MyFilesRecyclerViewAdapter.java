@@ -10,11 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myandriodikpmdapplication.R;
 import com.example.myandriodikpmdapplication.holders.DataHolder;
+import com.example.myandriodikpmdapplication.interfaces.Archive;
+import com.example.myandriodikpmdapplication.models.ArchiveMetadata;
 import com.example.myandriodikpmdapplication.models.File;
-import com.example.myandriodikpmdapplication.ui.home.DetailsActivity;
+import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.ui.home.ScrollingPdfViewActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -42,14 +43,15 @@ public class MyFilesRecyclerViewAdapter extends RecyclerView.Adapter<MyFilesRecy
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<File> comics = DataHolder.metadata.getFiles();
+                ArchiveMetadata metadata = DataHolder.metadata;
 
 
-                if (comics == null) {
-                    return;
-                }
+                Archive archive = new ArchiveOrgUrlService();
 
-                DataHolder.pdfUrl = comics.get(position).getName();
+
+                DataHolder.pdfUrl = archive.file(metadata, metadata.getFiles().get(position).getName());
+
+
                 v.getContext().startActivity(new Intent(v.getContext(), ScrollingPdfViewActivity.class));
 
             }

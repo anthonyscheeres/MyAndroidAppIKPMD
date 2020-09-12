@@ -1,4 +1,4 @@
-package com.example.myandriodikpmdapplication.ui.details;
+package com.example.myandriodikpmdapplication.ui.home;
 
 import android.content.Context;
 import android.os.Bundle;

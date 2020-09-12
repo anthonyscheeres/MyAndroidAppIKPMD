@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="com.example.myandriodikpmdapplication.ui.details.ListFilesItemFragment"
+        android:name="com.example.myandriodikpmdapplication.ui.home.ListFilesItemFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
