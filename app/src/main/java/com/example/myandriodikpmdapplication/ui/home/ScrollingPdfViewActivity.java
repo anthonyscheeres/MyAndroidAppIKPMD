@@ -20,17 +20,6 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scrolling_pdf_view);
-
-
-        PDFView pdfView;
-
-        pdfView = findViewById(R.id.pdfView);
-
-
-        String url = null;
-
-        InputStream pdf = null;
 
 
         Thread thread = new Thread() {
@@ -42,13 +31,11 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
                 Archive archive = new ArchiveOrgUrlService();
 
 
-
                 Http http = new HttpService();
 
                 try {
 
-                    String url = DataHolder.pdfUrl;
-                    InputStream pdf = http.download(url);
+                    InputStream pdf = http.download(DataHolder.pdfUrl);
                     DataHolder.pdf = pdf;
 
                 } catch (IOException e) {
@@ -70,8 +57,23 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
 
         }
 
+        setContentView(R.layout.activity_scrolling_pdf_view);
 
-        pdfView.fromStream(DataHolder.pdf);
+        PDFView pdfView = findViewById(R.id.pdfView);
+
+        System.out.println("idiot " + DataHolder.pdfUrl);
+
+        pdfView.fromStream(DataHolder.pdf)
+                .enableSwipe(true)
+                .swipeHorizontal(true)
+                .enableDoubletap(true)
+                .defaultPage(0)
+                .enableAnnotationRendering(false)
+                .password(null)
+                .scrollHandle(null)
+                .enableAntialiasing(true)
+                .load();
+
 
     }
 }

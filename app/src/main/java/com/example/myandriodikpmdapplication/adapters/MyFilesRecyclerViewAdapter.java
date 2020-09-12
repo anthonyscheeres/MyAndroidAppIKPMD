@@ -45,12 +45,9 @@ public class MyFilesRecyclerViewAdapter extends RecyclerView.Adapter<MyFilesRecy
             public void onClick(View v) {
                 ArchiveMetadata metadata = DataHolder.metadata;
 
-
                 Archive archive = new ArchiveOrgUrlService();
 
-
                 DataHolder.pdfUrl = archive.file(metadata, metadata.getFiles().get(position).getName());
-
 
                 v.getContext().startActivity(new Intent(v.getContext(), ScrollingPdfViewActivity.class));
 
