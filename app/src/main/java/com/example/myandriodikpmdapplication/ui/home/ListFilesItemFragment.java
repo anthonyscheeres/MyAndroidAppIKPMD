@@ -60,7 +60,7 @@ public class ListFilesItemFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list_files_item_list, container, false);
+        final View view = inflater.inflate(R.layout.fragment_list_files_item_list, container, false);
         final ArchiveMetadata[] metadata = {null};
 
         Thread thread = new Thread() {
@@ -70,9 +70,11 @@ public class ListFilesItemFragment extends Fragment {
 
 
                 try {
-                    Http http = new HttpService();
+                    final Http http = new HttpService();
 
-                    Archive archive = new ArchiveOrgUrlService();
+                    final Archive archive = new ArchiveOrgUrlService();
+
+
                     metadata[0] = archive.metadata(http, DataHolder.detailsComic.getIdentifier());
 
                     DataHolder.metadata = metadata[0];

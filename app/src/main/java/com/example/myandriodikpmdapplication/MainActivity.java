@@ -39,23 +39,25 @@ import java.util.NoSuchElementException;
 public class MainActivity extends AppCompatActivity {
 
     //The app's name in local storage
-    private final String NAME_OF_PREFERENCES = "Android_IKPMD8992";
+    final String NAME_OF_PREFERENCES = "Android_IKPMD8992";
     String userID = "userID";
     SharedPreferences settings;
     BitmapI imageBitmap = new BitmapService();
     // Database settings
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
     //Initialize services
     Http http = new HttpService();
-    Token identification = new UserIDService();
-    Identicon pfp = new KweloIdenticon();
-    private AppBarConfiguration mAppBarConfiguration;
+
+    final Token identification = new UserIDService();
+    final Identicon pfp = new KweloIdenticon();
+    AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Enable usage of local storage by creating this object at startup
         settings = getSharedPreferences(NAME_OF_PREFERENCES, MODE_PRIVATE);
+
         try {
             userID = identification.get(settings);
         } catch (NoSuchElementException err) {
@@ -85,15 +87,15 @@ public class MainActivity extends AppCompatActivity {
             // whenever data at this location is updated.
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Get data object from database and map to it's model
-                User userData = dataSnapshot.getValue(User.class);
+                final User userData = dataSnapshot.getValue(User.class);
 
                 DataHolder.user = userData;
 
 
-                Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
+                final Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
 
-                ImageView imageView = hView.findViewById(R.id.f);
-                TextView textView = hView.findViewById(R.id.f2);
+                final ImageView imageView = hView.findViewById(R.id.f);
+                final TextView textView = hView.findViewById(R.id.f2);
                 textView.setText(userData.getUserID());
                 imageView.setImageBitmap(decodedImage);
             }

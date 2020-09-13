@@ -45,7 +45,7 @@ public class MyComicRecyclerViewAdapter extends RecyclerView.Adapter<MyComicRecy
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
 
-        Archive archive = new ArchiveOrgUrlService();
+        final Archive archive = new ArchiveOrgUrlService();
 
         String url = archive.image(mValues.get(position).getIdentifier());
 

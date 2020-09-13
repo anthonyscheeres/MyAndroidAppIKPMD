@@ -46,9 +46,9 @@ public class MyFilesRecyclerViewAdapter extends RecyclerView.Adapter<MyFilesRecy
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArchiveMetadata metadata = DataHolder.metadata;
+                final ArchiveMetadata metadata = DataHolder.metadata;
 
-                Archive archive = new ArchiveOrgUrlService();
+                final Archive archive = new ArchiveOrgUrlService();
 
                 DataHolder.pdfUrl = archive.file(metadata, metadata.getFiles().get(position).getName());
 

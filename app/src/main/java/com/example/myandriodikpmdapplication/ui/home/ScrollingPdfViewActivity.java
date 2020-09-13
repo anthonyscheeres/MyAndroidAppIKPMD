@@ -29,10 +29,10 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
             public void run() {
 
 
-                Archive archive = new ArchiveOrgUrlService();
+                final Archive archive = new ArchiveOrgUrlService();
 
 
-                Http http = new HttpService();
+                final Http http = new HttpService();
 
                 try {
 
@@ -62,7 +62,7 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_scrolling_pdf_view);
 
-        PDFView pdfView = findViewById(R.id.pdfView);
+        final PDFView pdfView = findViewById(R.id.pdfView);
 
         pdfView.fromBytes(pdf[0].toByteArray())
                 .enableSwipe(true)
