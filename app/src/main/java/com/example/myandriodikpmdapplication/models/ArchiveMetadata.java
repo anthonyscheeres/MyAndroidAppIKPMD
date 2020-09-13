@@ -8,30 +8,32 @@ import java.util.ArrayList;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ArchiveMetadata {
 
-    ArrayList<Object> files = new ArrayList<Object>();
-    Metadata MetadataObject;
-    ArrayList<Object> workable_servers = new ArrayList<Object>();
-    private float created;
+    private ArrayList<File> files = new ArrayList<File>();
+    private Metadata metadata;
+
     private String d1;
     private String d2;
     private String dir;
-    private float files_count;
-    private float item_last_updated;
-    private float item_size;
+
     private String server;
-    private float uniq;
 
     public ArchiveMetadata() {
     }
 
-// Getter Methods
-
-    public float getCreated() {
-        return created;
+    public ArrayList<File> getFiles() {
+        return files;
     }
 
-    public void setCreated(float created) {
-        this.created = created;
+    public void setFiles(ArrayList<File> files) {
+        this.files = files;
+    }
+
+    public Metadata getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(Metadata metadata) {
+        this.metadata = metadata;
     }
 
     public String getD1() {
@@ -58,53 +60,11 @@ public class ArchiveMetadata {
         this.dir = dir;
     }
 
-    public float getFiles_count() {
-        return files_count;
-    }
-
-    public void setFiles_count(float files_count) {
-        this.files_count = files_count;
-    }
-
-    // Setter Methods
-
-    public float getItem_last_updated() {
-        return item_last_updated;
-    }
-
-    public void setItem_last_updated(float item_last_updated) {
-        this.item_last_updated = item_last_updated;
-    }
-
-    public float getItem_size() {
-        return item_size;
-    }
-
-    public void setItem_size(float item_size) {
-        this.item_size = item_size;
-    }
-
-    public Metadata getMetadata() {
-        return MetadataObject;
-    }
-
-    public void setMetadata(Metadata metadataObject) {
-        this.MetadataObject = metadataObject;
-    }
-
     public String getServer() {
         return server;
     }
 
     public void setServer(String server) {
         this.server = server;
-    }
-
-    public float getUniq() {
-        return uniq;
-    }
-
-    public void setUniq(float uniq) {
-        this.uniq = uniq;
     }
 }

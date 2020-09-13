@@ -2,8 +2,8 @@ package com.example.myandriodikpmdapplication.services;
 
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;
-import com.example.myandriodikpmdapplication.models.ArchiveManga;
 import com.example.myandriodikpmdapplication.models.ArchiveMetadata;
+import com.example.myandriodikpmdapplication.models.ArchiveSearch;
 import com.example.myandriodikpmdapplication.models.Protocol;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -11,7 +11,7 @@ public class ArchiveOrgUrlService implements Archive {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    public ArchiveManga search(String search, Http http) throws Exception {
+    public ArchiveSearch search(String search, Http http) throws Exception {
 
 
 //got this url from https://archive.org/advancedsearch.php#raw
@@ -20,7 +20,7 @@ public class ArchiveOrgUrlService implements Archive {
 
         String json = http.send(url, Protocol.GET.toString());
 
-        ArchiveManga MangaCollection = objectMapper.readValue(json, ArchiveManga.class);
+        ArchiveSearch MangaCollection = objectMapper.readValue(json, ArchiveSearch.class);
 
         return MangaCollection;
 
@@ -30,7 +30,9 @@ public class ArchiveOrgUrlService implements Archive {
 
         String url = "https://archive.org/metadata/" + identifier;
 
+
         String json = http.send(url, Protocol.GET.toString());
+
 
         ArchiveMetadata Metadata = objectMapper.readValue(json, ArchiveMetadata.class);
 
@@ -45,7 +47,7 @@ public class ArchiveOrgUrlService implements Archive {
         //url like: https://ia800104.us.archive.org/20/items/manga_Fairy_Tail_Blue_Mistral/Fairy%20Tail%20-%20Blue%20Mistral%20-%20c3%20%28mag%29%20%5BLoveNaluFan%5D.pdf
         String url = "https://" + archiveMetadata.getD1() + archiveMetadata.getDir() + "/" + file;
 
-        return url;
+        return url.replace("\\", "/");
 
     }
 

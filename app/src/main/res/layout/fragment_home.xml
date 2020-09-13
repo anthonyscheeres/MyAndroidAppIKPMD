@@ -8,7 +8,14 @@
 
 
     <!-- Here is the inserted layout -->
-    <include layout="@layout/grid_collection"/>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment2"
+        android:name="com.example.myandriodikpmdapplication.ui.home.ComicFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

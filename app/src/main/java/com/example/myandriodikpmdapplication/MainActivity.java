@@ -1,9 +1,10 @@
 package com.example.myandriodikpmdapplication;
 
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.GridView;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,14 +16,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.myandriodikpmdapplication.interfaces.Archive;
+import com.example.myandriodikpmdapplication.holders.DataHolder;
 import com.example.myandriodikpmdapplication.interfaces.BitmapI;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.interfaces.Identicon;
 import com.example.myandriodikpmdapplication.interfaces.Token;
-import com.example.myandriodikpmdapplication.models.Data;
 import com.example.myandriodikpmdapplication.models.User;
-import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.services.BitmapService;
 import com.example.myandriodikpmdapplication.services.HttpService;
 import com.example.myandriodikpmdapplication.services.KweloIdenticon;
@@ -50,10 +49,6 @@ public class MainActivity extends AppCompatActivity {
     Http http = new HttpService();
     Token identification = new UserIDService();
     Identicon pfp = new KweloIdenticon();
-    GridView gridView;
-    ImageView imageView;
-    TextView textView;
-    Archive archive = new ArchiveOrgUrlService();
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -73,6 +68,18 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference(userID);
         // Read from the database
 
+
+        // Initialize front end
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        View hView = navigationView.inflateHeaderView(R.layout.nav_header_main);
+
+
         //Get user data
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -82,16 +89,15 @@ public class MainActivity extends AppCompatActivity {
                 //Get data object from database and map to it's model
                 User userData = dataSnapshot.getValue(User.class);
 
-                Data.user = userData;
-
-                //Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
+                DataHolder.user = userData;
 
 
-                // update UI
-                //imageView = (ImageView) findViewById(R.id.f);
-                //textView = (TextView) findViewById(R.id.f2);
-                //textView.setText(userData.getUserID());
-                //imageView.setImageBitmap(decodedImage);
+                Bitmap decodedImage = imageBitmap.encode(userData.getProfilePicture());
+
+                ImageView imageView = hView.findViewById(R.id.f);
+                TextView textView = hView.findViewById(R.id.f2);
+                textView.setText(userData.getUserID());
+                imageView.setImageBitmap(decodedImage);
             }
 
             @Override
@@ -100,14 +106,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        // Initialize front end
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
 
 
         // Passing each menu ID as a set of Ids because each

@@ -4,14 +4,20 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.InputStream;
 
 public class DownloadImageService extends AsyncTask<String, Void, Bitmap> {
     ImageView bmImage;
+    String text;
+    TextView textView;
 
-    public DownloadImageService(ImageView bmImage) {
+
+    public DownloadImageService(ImageView bmImage, String text, TextView textView) {
         this.bmImage = bmImage;
+        this.text = text;
+        this.textView = textView;
     }
 
     protected Bitmap doInBackground(String... urls) {
@@ -27,7 +33,10 @@ public class DownloadImageService extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected void onPostExecute(Bitmap result) {
+
+        textView.setText(text);
         bmImage.setImageBitmap(result);
+
     }
 
 }

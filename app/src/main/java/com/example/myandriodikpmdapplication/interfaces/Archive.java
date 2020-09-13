@@ -1,11 +1,11 @@
 package com.example.myandriodikpmdapplication.interfaces;
 
-import com.example.myandriodikpmdapplication.models.ArchiveManga;
 import com.example.myandriodikpmdapplication.models.ArchiveMetadata;
+import com.example.myandriodikpmdapplication.models.ArchiveSearch;
 
 public interface Archive {
 
-    ArchiveManga search(String search, Http http) throws Exception;
+    ArchiveSearch search(String search, Http http) throws Exception;
 
     ArchiveMetadata metadata(Http http, String identifier) throws Exception;
 

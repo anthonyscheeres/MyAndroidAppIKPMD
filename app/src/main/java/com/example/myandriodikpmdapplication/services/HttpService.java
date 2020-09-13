@@ -8,6 +8,9 @@ import androidx.annotation.RequiresApi;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -20,6 +23,35 @@ import java.nio.charset.StandardCharsets;
 public class HttpService implements Http {
 
     private final String USER_AGENT = "Mozilla/5.0";
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public ByteArrayOutputStream download(URL url) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        InputStream is = null;
+        try {
+            is = url.openStream();
+            byte[] byteChunk = new byte[4096]; // Or whatever size you want to read in at a time.
+            int n;
+
+            while ((n = is.read(byteChunk)) > 0) {
+                baos.write(byteChunk, 0, n);
+            }
+        } catch (IOException e) {
+            System.err.printf("Failed while reading bytes from %s: %s", url.toExternalForm(), e.getMessage());
+            e.printStackTrace();
+            // Perform any other exception handling that's appropriate.
+        } finally {
+            if (is != null) {
+                is.close();
+            }
+        }
+
+
+        return baos;
+
+
+    }
 
 
     /**
