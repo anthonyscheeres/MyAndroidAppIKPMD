@@ -4,18 +4,23 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+
     <ImageView
         android:id="@+id/item_number"
-        android:layout_width="376dp"
-        android:layout_height="361dp"
+        android:layout_width="379dp"
+        android:layout_height="139dp"
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
         android:id="@+id/content"
-        android:layout_width="376dp"
-        android:layout_height="166dp"
+        android:layout_width="379dp"
+        android:layout_height="59dp"
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem" />
+
+    <View
+        style="@style/Divider"
+        android:layout_height="12dp" />
 
 </LinearLayout>
