@@ -1,4 +1,4 @@
-package com.example.myandriodikpmdapplication.adapters;
+package com.example.myandriodikpmdapplication.ui.home.adapters;
 
 import android.content.Intent;
 import android.view.LayoutInflater;

@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myandriodikpmdapplication.R;
-import com.example.myandriodikpmdapplication.adapters.MyComicRecyclerViewAdapter;
-import com.example.myandriodikpmdapplication.adapters.holders.ComicHolder;
+import com.example.myandriodikpmdapplication.ui.home.adapters.MyComicRecyclerViewAdapter;
+import com.example.myandriodikpmdapplication.ui.home.adapters.holders.ComicHolder;
 import com.example.myandriodikpmdapplication.models.DataHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;

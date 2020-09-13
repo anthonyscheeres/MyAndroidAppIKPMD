@@ -1,4 +1,4 @@
-package com.example.myandriodikpmdapplication.adapters;
+package com.example.myandriodikpmdapplication.ui.home.adapters;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myandriodikpmdapplication.R;
 import com.example.myandriodikpmdapplication.models.DataHolder;
-import com.example.myandriodikpmdapplication.adapters.holders.DownloadImageForHolder;
+import com.example.myandriodikpmdapplication.ui.home.adapters.holders.DownloadImageForHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
