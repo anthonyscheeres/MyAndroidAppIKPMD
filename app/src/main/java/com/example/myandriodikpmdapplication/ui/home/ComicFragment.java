@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myandriodikpmdapplication.R;
 import com.example.myandriodikpmdapplication.adapters.MyComicRecyclerViewAdapter;
-import com.example.myandriodikpmdapplication.holders.ComicHolder;
-import com.example.myandriodikpmdapplication.holders.DataHolder;
+import com.example.myandriodikpmdapplication.adapters.holders.ComicHolder;
+import com.example.myandriodikpmdapplication.models.DataHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.models.ArchiveSearch;

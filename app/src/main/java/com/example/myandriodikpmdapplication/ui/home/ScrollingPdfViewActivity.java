@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myandriodikpmdapplication.R;
-import com.example.myandriodikpmdapplication.holders.DataHolder;
+import com.example.myandriodikpmdapplication.models.DataHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;

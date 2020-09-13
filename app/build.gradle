@@ -2,6 +2,15 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+
+    lintOptions {
+        quiet false
+        abortOnError true
+        ignoreWarnings true
+        checkReleaseBuilds false
+    }
+
+
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 

@@ -16,7 +16,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.myandriodikpmdapplication.holders.DataHolder;
+import com.example.myandriodikpmdapplication.models.DataHolder;
 import com.example.myandriodikpmdapplication.interfaces.BitmapI;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.interfaces.Identicon;
@@ -66,8 +66,6 @@ public class MainActivity extends AppCompatActivity {
         }
         //Initialize the object that allows modifying the user his account data
         DatabaseReference myRef = database.getReference(userID);
-        // Read from the database
-
 
         // Initialize front end
         setContentView(R.layout.activity_main);

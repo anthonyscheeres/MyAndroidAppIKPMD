@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myandriodikpmdapplication.R;
-import com.example.myandriodikpmdapplication.holders.DataHolder;
+import com.example.myandriodikpmdapplication.models.DataHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.models.ArchiveMetadata;
 import com.example.myandriodikpmdapplication.models.File;

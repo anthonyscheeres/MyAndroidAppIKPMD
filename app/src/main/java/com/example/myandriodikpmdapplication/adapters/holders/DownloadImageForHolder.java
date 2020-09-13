@@ -1,4 +1,4 @@
-package com.example.myandriodikpmdapplication.holders;
+package com.example.myandriodikpmdapplication.adapters.holders;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

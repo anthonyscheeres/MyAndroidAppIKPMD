@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myandriodikpmdapplication.R;
 import com.example.myandriodikpmdapplication.adapters.MyFilesRecyclerViewAdapter;
-import com.example.myandriodikpmdapplication.holders.DataHolder;
-import com.example.myandriodikpmdapplication.holders.FilesHolder;
+import com.example.myandriodikpmdapplication.models.DataHolder;
+import com.example.myandriodikpmdapplication.adapters.holders.FilesHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.models.ArchiveMetadata;

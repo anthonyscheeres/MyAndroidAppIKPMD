@@ -1,4 +1,4 @@
-package com.example.myandriodikpmdapplication.holders;
+package com.example.myandriodikpmdapplication.models;
 
 import com.example.myandriodikpmdapplication.models.ArchiveMetadata;
 import com.example.myandriodikpmdapplication.models.Comic;
