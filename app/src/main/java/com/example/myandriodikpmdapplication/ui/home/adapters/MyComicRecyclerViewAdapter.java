@@ -10,12 +10,12 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myandriodikpmdapplication.R;
-import com.example.myandriodikpmdapplication.models.DataHolder;
-import com.example.myandriodikpmdapplication.ui.home.adapters.holders.DownloadImageForHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.models.Comic;
+import com.example.myandriodikpmdapplication.models.DataHolder;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.ui.home.DetailsActivity;
+import com.example.myandriodikpmdapplication.ui.home.adapters.holders.DownloadImageForHolder;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myandriodikpmdapplication.R;
-import com.example.myandriodikpmdapplication.ui.home.adapters.MyComicRecyclerViewAdapter;
-import com.example.myandriodikpmdapplication.ui.home.adapters.holders.ComicHolder;
-import com.example.myandriodikpmdapplication.models.DataHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.models.ArchiveSearch;
+import com.example.myandriodikpmdapplication.models.DataHolder;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.services.HttpService;
+import com.example.myandriodikpmdapplication.ui.home.adapters.MyComicRecyclerViewAdapter;
+import com.example.myandriodikpmdapplication.ui.home.adapters.holders.ComicHolder;
 
 /**
  * A fragment representing a list of Items.
@@ -67,19 +67,21 @@ public class ComicFragment extends Fragment {
 
         Archive archive = new ArchiveOrgUrlService();
 
+        final ArchiveSearch[] collectionOfComics = {null};
+
         Thread thread = new Thread() {
 
 
             public void run() {
-                ArchiveSearch collectionOfComics = null;
+
                 try {
                     //webcomicuniverse || manga_library
-                    collectionOfComics = archive.search("webcomicuniverse", http);
+                    collectionOfComics[0] = archive.search("webcomicuniverse", http);
                 } catch (Exception e) {
                 }
 
-                if (collectionOfComics != null) {
-                    DataHolder.docs = collectionOfComics.getResponse().getDocs();
+                if (collectionOfComics[0] != null) {
+                    DataHolder.docs = collectionOfComics[0].getResponse().getDocs();
                 }
             }
         };
@@ -95,7 +97,7 @@ public class ComicFragment extends Fragment {
         }
 
 
-        ComicHolder.ITEMS = DataHolder.docs;
+        ComicHolder.ITEMS = collectionOfComics[0].getResponse().getDocs();
 
         // Set the adapter
         if (view instanceof RecyclerView) {

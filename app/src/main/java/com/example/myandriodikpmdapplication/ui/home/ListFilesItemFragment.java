@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myandriodikpmdapplication.R;
-import com.example.myandriodikpmdapplication.ui.home.adapters.MyFilesRecyclerViewAdapter;
-import com.example.myandriodikpmdapplication.models.DataHolder;
-import com.example.myandriodikpmdapplication.ui.home.adapters.holders.FilesHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.models.ArchiveMetadata;
+import com.example.myandriodikpmdapplication.models.DataHolder;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.services.HttpService;
+import com.example.myandriodikpmdapplication.ui.home.adapters.MyFilesRecyclerViewAdapter;
+import com.example.myandriodikpmdapplication.ui.home.adapters.holders.FilesHolder;
 
 /**
  * A fragment representing a list of Items.
@@ -61,21 +61,22 @@ public class ListFilesItemFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_files_item_list, container, false);
-
+        final ArchiveMetadata[] metadata = {null};
 
         Thread thread = new Thread() {
 
 
             public void run() {
 
-                ArchiveMetadata metadata = null;
+
                 try {
                     Http http = new HttpService();
 
                     Archive archive = new ArchiveOrgUrlService();
-                    metadata = archive.metadata(http, DataHolder.detailsComic.getIdentifier());
+                    metadata[0] = archive.metadata(http, DataHolder.detailsComic.getIdentifier());
 
-                    DataHolder.metadata = metadata;
+                    DataHolder.metadata = metadata[0];
+
 
                 } catch (Exception e) {
 
@@ -97,7 +98,7 @@ public class ListFilesItemFragment extends Fragment {
         }
 
 
-        FilesHolder.ITEMS = DataHolder.metadata.getFiles();
+        FilesHolder.ITEMS = metadata[0].getFiles();
 
         // DataHolder.detailsComic.setMetadata(metadata);
 

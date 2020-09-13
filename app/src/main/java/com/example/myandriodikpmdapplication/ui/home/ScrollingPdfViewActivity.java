@@ -5,9 +5,9 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myandriodikpmdapplication.R;
-import com.example.myandriodikpmdapplication.models.DataHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.interfaces.Http;
+import com.example.myandriodikpmdapplication.models.DataHolder;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.services.HttpService;
 import com.github.barteksc.pdfviewer.PDFView;
@@ -21,7 +21,7 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        final ByteArrayOutputStream[] pdf = new ByteArrayOutputStream[1];
 
         Thread thread = new Thread() {
 
@@ -36,8 +36,8 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
 
                 try {
 
-                    ByteArrayOutputStream pdf = http.download(new URL(DataHolder.pdfUrl));
-                    DataHolder.pdf = pdf;
+                    pdf[0] = http.download(new URL(DataHolder.pdfUrl));
+                    DataHolder.pdf = pdf[0];
 
 
                 } catch (IOException e) {
@@ -64,7 +64,7 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
 
         PDFView pdfView = findViewById(R.id.pdfView);
 
-        pdfView.fromBytes(DataHolder.pdf.toByteArray())
+        pdfView.fromBytes(pdf[0].toByteArray())
                 .enableSwipe(true)
                 .swipeHorizontal(true)
                 .enableDoubletap(true)

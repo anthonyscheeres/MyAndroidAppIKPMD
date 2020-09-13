@@ -1,4 +1,4 @@
-package com.example.myandriodikpmdapplication.adapters.holders;
+package com.example.myandriodikpmdapplication.ui.home.adapters.holders;
 
 import android.view.View;
 import android.widget.ImageView;

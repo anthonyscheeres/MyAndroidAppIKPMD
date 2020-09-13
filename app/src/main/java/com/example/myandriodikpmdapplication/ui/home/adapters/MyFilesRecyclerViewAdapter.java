@@ -9,9 +9,9 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myandriodikpmdapplication.R;
-import com.example.myandriodikpmdapplication.models.DataHolder;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.models.ArchiveMetadata;
+import com.example.myandriodikpmdapplication.models.DataHolder;
 import com.example.myandriodikpmdapplication.models.File;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.ui.home.ScrollingPdfViewActivity;
@@ -29,7 +29,7 @@ public class MyFilesRecyclerViewAdapter extends RecyclerView.Adapter<MyFilesRecy
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        
+
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_list_files_item, parent, false);
         return new ViewHolder(view);
@@ -39,24 +39,23 @@ public class MyFilesRecyclerViewAdapter extends RecyclerView.Adapter<MyFilesRecy
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
 
+        holder.mItem = mValues.get(position);
+        holder.mContentView.setText(mValues.get(position).getName());
 
-            holder.mItem = mValues.get(position);
-            holder.mContentView.setText(mValues.get(position).getName());
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArchiveMetadata metadata = DataHolder.metadata;
 
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ArchiveMetadata metadata = DataHolder.metadata;
+                Archive archive = new ArchiveOrgUrlService();
 
-                    Archive archive = new ArchiveOrgUrlService();
+                DataHolder.pdfUrl = archive.file(metadata, metadata.getFiles().get(position).getName());
 
-                    DataHolder.pdfUrl = archive.file(metadata, metadata.getFiles().get(position).getName());
+                v.getContext().startActivity(new Intent(v.getContext(), ScrollingPdfViewActivity.class));
 
-                    v.getContext().startActivity(new Intent(v.getContext(), ScrollingPdfViewActivity.class));
-
-                }
-            });
+            }
+        });
 
 
     }
