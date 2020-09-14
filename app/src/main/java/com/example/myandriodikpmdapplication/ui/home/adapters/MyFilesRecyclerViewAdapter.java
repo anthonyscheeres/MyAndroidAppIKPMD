@@ -49,11 +49,11 @@ public class MyFilesRecyclerViewAdapter extends RecyclerView.Adapter<MyFilesRecy
                 final ArchiveMetadata metadata = DataHolder.metadata;
 
                 final Archive archive = new ArchiveOrgUrlService();
-
-                DataHolder.pdfUrl = archive.file(metadata, metadata.getFiles().get(position).getName());
-
-                v.getContext().startActivity(new Intent(v.getContext(), ScrollingPdfViewActivity.class));
-
+                if (metadata.getFiles().get(position).getName().contains("pdf")) {
+                    String url = archive.file(metadata, metadata.getFiles().get(position).getName());
+                    DataHolder.pdfUrl = url;
+                    v.getContext().startActivity(new Intent(v.getContext(), ScrollingPdfViewActivity.class));
+                }
             }
         });
 
