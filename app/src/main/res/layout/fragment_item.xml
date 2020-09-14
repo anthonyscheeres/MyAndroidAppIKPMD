@@ -20,7 +20,10 @@
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <View
-        style="@style/Divider"
-        android:layout_height="12dp" />
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        android:background="?android:attr/listDivider" />
 
 </LinearLayout>
