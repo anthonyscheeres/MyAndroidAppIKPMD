@@ -23,6 +23,10 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         final ByteArrayOutputStream[] pdf = new ByteArrayOutputStream[1];
 
+        setContentView(R.layout.activity_scrolling_pdf_view);
+
+        final PDFView pdfView = findViewById(R.id.pdfView);
+
         Thread thread = new Thread() {
 
 
@@ -47,33 +51,20 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
                 }
 
 
+                pdfView.fromBytes(pdf[0].toByteArray())
+                        .enableSwipe(true)
+                        .swipeHorizontal(true)
+                        .enableDoubletap(true)
+                        .defaultPage(0)
+                        .enableAnnotationRendering(false)
+                        .scrollHandle(null)
+                        .enableAntialiasing(true)
+                        .load();
+
             }
         };
 
         thread.start();
-
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            // System.out.println(" idiot ");
-
-
-        }
-
-        setContentView(R.layout.activity_scrolling_pdf_view);
-
-        final PDFView pdfView = findViewById(R.id.pdfView);
-
-        pdfView.fromBytes(pdf[0].toByteArray())
-                .enableSwipe(true)
-                .swipeHorizontal(true)
-                .enableDoubletap(true)
-                .defaultPage(0)
-                .enableAnnotationRendering(false)
-                .scrollHandle(null)
-                .enableAntialiasing(true)
-                .load();
-
 
     }
 }
