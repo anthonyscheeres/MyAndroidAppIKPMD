@@ -1,5 +1,6 @@
 package com.example.myandriodikpmdapplication.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,14 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
 
         final PDFView pdfView = findViewById(R.id.pdfView);
 
+        Intent intent = getIntent();
+
+
+        final String url = intent.getStringExtra("1");
+
+
+
+
         Thread thread = new Thread() {
 
 
@@ -40,13 +49,12 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
 
                 try {
 
-                    pdf[0] = http.download(new URL(DataHolder.pdfUrl));
+                    pdf[0] = http.download(new URL(url));
                     DataHolder.pdf = pdf[0];
 
 
                 } catch (IOException e) {
 
-                    e.printStackTrace();
 
                 }
 
