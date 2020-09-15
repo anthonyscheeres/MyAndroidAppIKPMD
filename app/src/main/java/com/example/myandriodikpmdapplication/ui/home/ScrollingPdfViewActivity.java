@@ -1,6 +1,8 @@
 package com.example.myandriodikpmdapplication.ui.home;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,10 +25,23 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         final ByteArrayOutputStream[] pdf = new ByteArrayOutputStream[1];
 
+        setContentView(R.layout.activity_scrolling_pdf_view);
+
+        final PDFView pdfView = findViewById(R.id.pdfView);
+
+        ProgressBar spinner;
+        spinner = (ProgressBar)findViewById(R.id.progressBar1);
+
+
         Thread thread = new Thread() {
 
 
             public void run() {
+
+
+                spinner.setVisibility(View.VISIBLE);
+
+
 
 
                 final Archive archive = new ArchiveOrgUrlService();
@@ -42,37 +57,35 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
 
                 } catch (IOException e) {
 
-                    e.printStackTrace();
 
                 }
+
+
+
+                spinner.setVisibility(View.GONE);
+
+                pdfView.fromBytes(pdf[0].toByteArray())
+                        .enableSwipe(true)
+                        .swipeHorizontal(true)
+                        .enableDoubletap(true)
+                        .defaultPage(0)
+                        .enableAnnotationRendering(false)
+                        .scrollHandle(null)
+                        .enableAntialiasing(true)
+                        .load();
+
+
+
 
 
             }
         };
 
+
+
+
+
         thread.start();
-
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            // System.out.println(" idiot ");
-
-
-        }
-
-        setContentView(R.layout.activity_scrolling_pdf_view);
-
-        final PDFView pdfView = findViewById(R.id.pdfView);
-
-        pdfView.fromBytes(pdf[0].toByteArray())
-                .enableSwipe(true)
-                .swipeHorizontal(true)
-                .enableDoubletap(true)
-                .defaultPage(0)
-                .enableAnnotationRendering(false)
-                .scrollHandle(null)
-                .enableAntialiasing(true)
-                .load();
 
 
     }
