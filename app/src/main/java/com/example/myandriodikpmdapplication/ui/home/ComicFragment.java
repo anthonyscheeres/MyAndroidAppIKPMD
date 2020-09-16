@@ -94,24 +94,24 @@ public class ComicFragment extends Fragment {
 
         }
 
-if (collectionOfComics[0]!=null) {
+        if (collectionOfComics[0] != null) {
 
-    ComicHolder.ITEMS = collectionOfComics[0].getResponse().getDocs();
+            ComicHolder.ITEMS = collectionOfComics[0].getResponse().getDocs();
 
-    // Set the adapter
-    if (view instanceof RecyclerView) {
-        Context context = view.getContext();
-        RecyclerView recyclerView = (RecyclerView) view;
-        if (mColumnCount <= 1) {
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        } else {
-            recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+            // Set the adapter
+            if (view instanceof RecyclerView) {
+                Context context = view.getContext();
+                RecyclerView recyclerView = (RecyclerView) view;
+                if (mColumnCount <= 1) {
+                    recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                } else {
+                    recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                }
+                recyclerView.setAdapter(new MyComicRecyclerViewAdapter(ComicHolder.ITEMS));
+
+
+            }
         }
-        recyclerView.setAdapter(new MyComicRecyclerViewAdapter(ComicHolder.ITEMS));
-
-
-    }
-}
 
         return view;
     }

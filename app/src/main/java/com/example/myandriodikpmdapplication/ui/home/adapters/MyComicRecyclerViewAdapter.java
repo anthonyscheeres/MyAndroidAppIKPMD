@@ -1,7 +1,6 @@
 package com.example.myandriodikpmdapplication.ui.home.adapters;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,6 @@ import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.models.DataHolder;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.ui.home.DetailsActivity;
-import com.example.myandriodikpmdapplication.ui.home.adapters.holders.DownloadImageForHolder;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +61,6 @@ public class MyComicRecyclerViewAdapter extends RecyclerView.Adapter<MyComicRecy
             @Override
             public void onClick(View v) {
                 ArrayList<Comic> comics = DataHolder.docs;
-
 
 
                 if (comics == null) {

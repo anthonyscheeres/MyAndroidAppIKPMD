@@ -55,17 +55,14 @@ public class MyFilesRecyclerViewAdapter extends RecyclerView.Adapter<MyFilesRecy
                     DataHolder.pdfUrl = url;
 
 
-                    Intent intent = new Intent();
-
-                    Bundle b = new Bundle();
+                    Intent intent = new Intent(v.getContext(), ScrollingPdfViewActivity.class);
 
 
-                    b.putString("1" , url);
 
-                    intent.putExtras(b);
+                    intent.putExtra("1", url);
 
 
-                    v.getContext().startActivity(new Intent(v.getContext(), ScrollingPdfViewActivity.class));
+                    v.getContext().startActivity(intent);
                 }
             }
         });
