@@ -1,7 +1,6 @@
 package com.example.myandriodikpmdapplication.ui.home.adapters;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,15 +51,10 @@ public class MyFilesRecyclerViewAdapter extends RecyclerView.Adapter<MyFilesRecy
                 final Archive archive = new ArchiveOrgUrlService();
                 if (metadata.getFiles().get(position).getName().contains("pdf")) {
                     String url = archive.file(metadata, metadata.getFiles().get(position).getName());
-                    DataHolder.pdfUrl = url;
-
 
                     Intent intent = new Intent(v.getContext(), ScrollingPdfViewActivity.class);
 
-
-
                     intent.putExtra("1", url);
-
 
                     v.getContext().startActivity(intent);
                 }

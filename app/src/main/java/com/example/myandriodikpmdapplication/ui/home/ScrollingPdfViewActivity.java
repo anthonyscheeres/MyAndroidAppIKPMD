@@ -1,6 +1,5 @@
 package com.example.myandriodikpmdapplication.ui.home;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -9,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myandriodikpmdapplication.R;
 import com.example.myandriodikpmdapplication.interfaces.File;
-import com.example.myandriodikpmdapplication.models.DataHolder;
 import com.example.myandriodikpmdapplication.services.HttpDownloader;
 import com.github.barteksc.pdfviewer.PDFView;
 
@@ -36,7 +34,7 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
             public void run() {
 
 
-                byte[] buffer = new byte[1024];
+                byte[] buffer = new byte[2048];
 
                 File file = new HttpDownloader();
 
