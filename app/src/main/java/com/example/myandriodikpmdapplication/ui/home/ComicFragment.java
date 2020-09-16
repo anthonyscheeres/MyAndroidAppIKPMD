@@ -91,8 +91,6 @@ public class ComicFragment extends Fragment {
         try {
             thread.join();
         } catch (InterruptedException e) {
-            // System.out.println(" idiot ");
-
 
         }
 

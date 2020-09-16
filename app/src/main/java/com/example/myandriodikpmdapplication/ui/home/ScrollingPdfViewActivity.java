@@ -22,7 +22,7 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final ByteArrayOutputStream[] pdf = new ByteArrayOutputStream[1];
+
 
         setContentView(R.layout.activity_scrolling_pdf_view);
 
@@ -31,7 +31,7 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
 
-        final String url = intent.getStringExtra("1");
+        final String url = DataHolder.pdfUrl;
 
 
 
@@ -47,10 +47,12 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
 
                 final Http http = new HttpService();
 
+                ByteArrayOutputStream pdf = null;
+
                 try {
 
-                    pdf[0] = http.download(new URL(url));
-                    DataHolder.pdf = pdf[0];
+                    pdf= http.download(new URL(url));
+                    DataHolder.pdf = pdf;
 
 
                 } catch (IOException e) {
@@ -59,7 +61,9 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
                 }
 
 
-                pdfView.fromBytes(pdf[0].toByteArray())
+                if (pdf == null){return;}
+
+                pdfView.fromBytes(pdf.toByteArray())
                         .enableSwipe(true)
                         .swipeHorizontal(true)
                         .enableDoubletap(true)
