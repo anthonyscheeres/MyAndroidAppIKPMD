@@ -63,7 +63,8 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
                     }
 
 
-                    System.out.println("idiot");
+                    if (bytes==null){ load.setVisibility(View.INVISIBLE); return;}
+
 
                     pdfView.fromBytes(bytes)
                             .enableSwipe(true)
@@ -77,6 +78,7 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
 
 
                     load.setVisibility(View.INVISIBLE);
+
 
                 } catch (MalformedURLException ex) {
                     ex.printStackTrace();
