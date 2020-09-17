@@ -13,7 +13,11 @@ import com.example.myandriodikpmdapplication.interfaces.Http;
 import com.example.myandriodikpmdapplication.services.HttpService;
 import com.github.barteksc.pdfviewer.PDFView;
 
+import org.apache.commons.io.IOUtils;
+
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ScrollingPdfViewActivity extends AppCompatActivity {
@@ -44,15 +48,24 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             public void run() {
 
-                byte[] buffer = new byte[2048];
-
                 try {
+                    URL urlz = new URL(url);
+                    InputStream is = null;
+                    byte[] bytes = null;
+                    try {
+                        is = urlz.openStream ();
+                        bytes = IOUtils.toByteArray(is);
+                    } catch (IOException e) {
+                        //handle errors
+                    }
+                    finally {
+                        if (is != null) is.close();
+                    }
 
-                    buffer = file.download(new URL(url), buffer);
 
+                    System.out.println("idiot");
 
-
-                    pdfView.fromBytes(buffer)
+                    pdfView.fromBytes(bytes)
                             .enableSwipe(true)
                             .swipeHorizontal(true)
                             .enableDoubletap(true)
@@ -62,12 +75,17 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
                             .enableAntialiasing(true)
                             .load();
 
-                } catch (IOException e) {
 
+                    load.setVisibility(View.INVISIBLE);
 
+                } catch (MalformedURLException ex) {
+                    ex.printStackTrace();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
 
-                load.setVisibility(View.INVISIBLE);
+
+
 
             }
         };
