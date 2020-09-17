@@ -27,6 +27,7 @@ import java.util.List;
 public class MyComicRecyclerViewAdapter extends RecyclerView.Adapter<MyComicRecyclerViewAdapter.ViewHolder> {
 
     private final List<Comic> mValues;
+    private final Archive archive = new ArchiveOrgUrlService();
 
     public MyComicRecyclerViewAdapter(List<Comic> items) {
         mValues = items;
@@ -43,7 +44,7 @@ public class MyComicRecyclerViewAdapter extends RecyclerView.Adapter<MyComicRecy
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        final Archive archive = new ArchiveOrgUrlService();
+
 
         String url = archive.image(mValues.get(position).getIdentifier());
 

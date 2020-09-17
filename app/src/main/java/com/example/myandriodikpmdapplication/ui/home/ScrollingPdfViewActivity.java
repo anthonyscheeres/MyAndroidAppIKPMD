@@ -7,14 +7,18 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myandriodikpmdapplication.R;
-import com.example.myandriodikpmdapplication.interfaces.File;
-import com.example.myandriodikpmdapplication.services.HttpDownloader;
+import com.example.myandriodikpmdapplication.interfaces.Http;
+import com.example.myandriodikpmdapplication.services.HttpService;
 import com.github.barteksc.pdfviewer.PDFView;
 
 import java.io.IOException;
 import java.net.URL;
 
 public class ScrollingPdfViewActivity extends AppCompatActivity {
+
+
+    private Http file = new HttpService();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +37,7 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             public void run() {
 
-
                 byte[] buffer = new byte[2048];
-
-                File file = new HttpDownloader();
-
 
                 try {
 
