@@ -11,9 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
+        android:fontFamily="@font/unitedsansreg_medium"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
+        android:fontFamily="@font/unitedsansreg_medium"
         android:id="@+id/content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
