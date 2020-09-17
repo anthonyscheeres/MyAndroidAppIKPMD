@@ -80,10 +80,9 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
                     load.setVisibility(View.INVISIBLE);
 
 
-                } catch (MalformedURLException ex) {
-                    ex.printStackTrace();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+
+                } catch (Error | IOException ex) {
+
                 }
 
 
