@@ -2,6 +2,8 @@ package com.example.myandriodikpmdapplication.ui.home;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +31,11 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
 
         final PDFView pdfView = findViewById(R.id.pdfView);
 
+
+        final ProgressBar load = findViewById(R.id.progressBar);
+
+        load.setVisibility(View.VISIBLE);
+
         final String url = getIntent().getStringExtra("1");
 
         Thread thread = new Thread() {
@@ -42,6 +49,7 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
                 try {
 
                     buffer = file.download(new URL(url), buffer);
+
 
 
                     pdfView.fromBytes(buffer)
@@ -59,6 +67,7 @@ public class ScrollingPdfViewActivity extends AppCompatActivity {
 
                 }
 
+                load.setVisibility(View.INVISIBLE);
 
             }
         };
