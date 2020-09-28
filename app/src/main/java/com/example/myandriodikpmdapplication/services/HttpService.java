@@ -24,32 +24,21 @@ public class HttpService implements Http {
 
     private final String USER_AGENT = "Mozilla/5.0";
 
-
+    @Override
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public ByteArrayOutputStream download(URL url) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        InputStream is = null;
-        try {
-            is = url.openStream();
-            byte[] byteChunk = new byte[4096]; // Or whatever size you want to read in at a time.
-            int n;
+    public byte[] download(URL url, byte[] buffer) throws IOException {
 
-            while ((n = is.read(byteChunk)) > 0) {
-                baos.write(byteChunk, 0, n);
-            }
-        } catch (IOException e) {
-            System.err.printf("Failed while reading bytes from %s: %s", url.toExternalForm(), e.getMessage());
-            e.printStackTrace();
-            // Perform any other exception handling that's appropriate.
-        } finally {
-            if (is != null) {
-                is.close();
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+        try (InputStream inputStream = url.openStream()) {
+            int n = 0;
+
+            while (-1 != (n = inputStream.read(buffer))) {
+                output.write(buffer, 0, n);
             }
         }
 
-
-        return baos;
-
+        return output.toByteArray();
 
     }
 

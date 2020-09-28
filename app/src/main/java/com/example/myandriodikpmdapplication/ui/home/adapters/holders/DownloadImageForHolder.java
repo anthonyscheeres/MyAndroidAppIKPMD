@@ -22,7 +22,7 @@ public class DownloadImageForHolder extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected Bitmap doInBackground(String... urls) {
-       final String urldisplay = urls[0];
+        final String urldisplay = urls[0];
         Bitmap mIcon11 = null;
         try {
             InputStream in = new java.net.URL(urldisplay).openStream();

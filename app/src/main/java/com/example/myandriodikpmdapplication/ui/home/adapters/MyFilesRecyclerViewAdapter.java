@@ -21,6 +21,8 @@ import java.util.List;
 
 public class MyFilesRecyclerViewAdapter extends RecyclerView.Adapter<MyFilesRecyclerViewAdapter.ViewHolder> {
 
+
+    private final Archive archive = new ArchiveOrgUrlService();
     private final List<File> mValues;
 
     public MyFilesRecyclerViewAdapter(List<File> items) {
@@ -48,11 +50,14 @@ public class MyFilesRecyclerViewAdapter extends RecyclerView.Adapter<MyFilesRecy
             public void onClick(View v) {
                 final ArchiveMetadata metadata = DataHolder.metadata;
 
-                final Archive archive = new ArchiveOrgUrlService();
                 if (metadata.getFiles().get(position).getName().contains("pdf")) {
                     String url = archive.file(metadata, metadata.getFiles().get(position).getName());
-                    DataHolder.pdfUrl = url;
-                    v.getContext().startActivity(new Intent(v.getContext(), ScrollingPdfViewActivity.class));
+
+                    Intent intent = new Intent(v.getContext(), ScrollingPdfViewActivity.class);
+
+                    intent.putExtra("1", url);
+
+                    v.getContext().startActivity(intent);
                 }
             }
         });

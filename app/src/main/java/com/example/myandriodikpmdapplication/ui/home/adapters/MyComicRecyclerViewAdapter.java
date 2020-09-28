@@ -9,13 +9,13 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myandriodikpmdapplication.R;
 import com.example.myandriodikpmdapplication.interfaces.Archive;
 import com.example.myandriodikpmdapplication.models.Comic;
 import com.example.myandriodikpmdapplication.models.DataHolder;
 import com.example.myandriodikpmdapplication.services.ArchiveOrgUrlService;
 import com.example.myandriodikpmdapplication.ui.home.DetailsActivity;
-import com.example.myandriodikpmdapplication.ui.home.adapters.holders.DownloadImageForHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +27,7 @@ import java.util.List;
 public class MyComicRecyclerViewAdapter extends RecyclerView.Adapter<MyComicRecyclerViewAdapter.ViewHolder> {
 
     private final List<Comic> mValues;
+    private final Archive archive = new ArchiveOrgUrlService();
 
     public MyComicRecyclerViewAdapter(List<Comic> items) {
         mValues = items;
@@ -43,16 +44,18 @@ public class MyComicRecyclerViewAdapter extends RecyclerView.Adapter<MyComicRecy
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
 
-        final Archive archive = new ArchiveOrgUrlService();
 
         String url = archive.image(mValues.get(position).getIdentifier());
 
 
-        new DownloadImageForHolder(holder, mValues.get(position).getTitle(), mValues.get(position)
-        )
-                .execute(url);
+        Glide.with(holder.mView)
+                .load(url)
+                .centerCrop()
+                .into(holder.mIdView);
+
+
+        holder.mContentView.setText(mValues.get(position).getTitle());
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -65,8 +68,8 @@ public class MyComicRecyclerViewAdapter extends RecyclerView.Adapter<MyComicRecy
                     return;
                 }
 
-                DataHolder.detailsComic = comics.get(position);
 
+                DataHolder.detailsComic = comics.get(position);
 
                 v.getContext().startActivity(new Intent(v.getContext(), DetailsActivity.class));
 

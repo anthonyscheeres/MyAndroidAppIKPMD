@@ -99,11 +99,7 @@ public class ListFilesItemFragment extends Fragment {
 
         }
 
-
         FilesHolder.ITEMS = metadata[0].getFiles();
-
-        // DataHolder.detailsComic.setMetadata(metadata);
-
 
         // Set the adapter
         if (view instanceof RecyclerView) {

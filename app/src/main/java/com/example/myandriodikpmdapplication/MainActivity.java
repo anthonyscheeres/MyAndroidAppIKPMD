@@ -40,16 +40,15 @@ public class MainActivity extends AppCompatActivity {
 
     //The app's name in local storage
     final String NAME_OF_PREFERENCES = "Android_IKPMD8992";
+    // Database settings
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    final Token identification = new UserIDService();
+    final Identicon pfp = new KweloIdenticon();
     String userID = "userID";
     SharedPreferences settings;
     BitmapI imageBitmap = new BitmapService();
-    // Database settings
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
     //Initialize services
     Http http = new HttpService();
-
-    final Token identification = new UserIDService();
-    final Identicon pfp = new KweloIdenticon();
     AppBarConfiguration mAppBarConfiguration;
 
     @Override

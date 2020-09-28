@@ -17,6 +17,7 @@
         android:layout_width="379dp"
         android:layout_height="59dp"
         android:layout_margin="@dimen/text_margin"
+        android:fontFamily="@font/unitedsansreg_medium"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <View
