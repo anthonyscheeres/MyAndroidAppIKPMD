@@ -22,7 +22,7 @@ import java.util.List;
 
 public class Datavisualisation extends Fragment {
 
-    private DatavisualisationViewModel mViewModel;
+
 
     public static Datavisualisation newInstance() {
         return new Datavisualisation();
@@ -33,23 +33,45 @@ public class Datavisualisation extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
 
+       View view =  inflater.inflate(R.layout.datavisualisation_fragment, container, false);
 
 
+        return view;
 
+    }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
+        View view = getView();
 
-
-
-        return inflater.inflate(R.layout.datavisualisation_fragment, container, false);
-
-
-
-
+            makeTheBarChart(view);
 
     }
 
 
+    public void makeTheBarChart(View view) {
+
+
+            BarChart chart = (BarChart) view.findViewById(R.id.barchart);
+
+
+        List<BarEntry> entries = new ArrayList<>();
+
+        entries.add(new BarEntry(0f, 30f));
+        entries.add(new BarEntry(1f, 80f));
+        entries.add(new BarEntry(2f, 60f));
+        entries.add(new BarEntry(3f, 50f));   // gap of 2f
+        entries.add(new BarEntry(5f, 70f));
+        entries.add(new BarEntry(6f, 60f));
+        BarDataSet set = new BarDataSet(entries, "BarDataSet");
+        BarData data = new BarData(set);
+        chart.setData(data);
+        chart.setDescription(new Description( ));
+        chart.animateXY(2000, 2000);
+        chart.invalidate();
+    }
 
 
 /*    @Override
