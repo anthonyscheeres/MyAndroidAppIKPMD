@@ -26,6 +26,11 @@ import com.example.myandriodikpmdapplication.services.BitmapService;
 import com.example.myandriodikpmdapplication.services.HttpService;
 import com.example.myandriodikpmdapplication.services.KweloIdenticon;
 import com.example.myandriodikpmdapplication.services.UserIDService;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +39,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class MainActivity extends AppCompatActivity {
@@ -107,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        //makeTheBarChart();
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -121,6 +131,28 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+
+    public void makeTheBarChart() {
+        BarChart chart = (BarChart) findViewById(R.id.barchart);
+        List<BarEntry> entries = new ArrayList<>();
+
+        entries.add(new BarEntry(0f, 30f));
+        entries.add(new BarEntry(1f, 80f));
+        entries.add(new BarEntry(2f, 60f));
+        entries.add(new BarEntry(3f, 50f));   // gap of 2f
+        entries.add(new BarEntry(5f, 70f));
+        entries.add(new BarEntry(6f, 60f));
+        BarDataSet set = new BarDataSet(entries, "BarDataSet");
+        BarData data = new BarData(set);
+        chart.setData(data);
+        chart.setDescription(new Description( ));
+        chart.animateXY(2000, 2000);
+        chart.invalidate();
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
