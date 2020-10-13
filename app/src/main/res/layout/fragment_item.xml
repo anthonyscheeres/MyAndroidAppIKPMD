@@ -31,8 +31,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/listitemcardview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:elevation="100dp"
         app:cardBackgroundColor="#B80606" />
 
 </LinearLayout>
