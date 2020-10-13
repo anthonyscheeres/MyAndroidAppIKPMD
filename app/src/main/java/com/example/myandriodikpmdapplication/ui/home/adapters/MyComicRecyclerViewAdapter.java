@@ -1,12 +1,16 @@
 package com.example.myandriodikpmdapplication.ui.home.adapters;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -42,11 +46,23 @@ public class MyComicRecyclerViewAdapter extends RecyclerView.Adapter<MyComicRecy
         return new ViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
 
         String url = archive.image(mValues.get(position).getIdentifier());
+
+
+
+
+        holder.cardView.setCardBackgroundColor(Color.YELLOW);
+
+        holder.cardView.setElevation(20f);
+
+        holder.cardView.setRadius(20f);
+
+        holder.cardView.setPadding(10, 10, 10 , 10);
 
 
         Glide.with(holder.mView)
@@ -89,12 +105,16 @@ public class MyComicRecyclerViewAdapter extends RecyclerView.Adapter<MyComicRecy
         public final ImageView mIdView;
         public final TextView mContentView;
         public Comic mItem;
+        public CardView cardView;
+
+
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
             mIdView = view.findViewById(R.id.item_number);
             mContentView = view.findViewById(R.id.content);
+            cardView = view.findViewById(R.id.listitemcardview);
         }
 
         @Override
